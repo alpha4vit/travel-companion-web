@@ -1,0 +1,67 @@
+.event {
+    width: 70%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.event:hover {
+    transform: scale(1.02);
+}
+
+.list {
+    flex: 65%;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+.event a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.event a:hover {
+    text-decoration: none;
+}
+
+
+.event__content {
+    padding: 20px;
+}
+
+.event__title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.event__dates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.event__date {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.event__description {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.event__fee {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+

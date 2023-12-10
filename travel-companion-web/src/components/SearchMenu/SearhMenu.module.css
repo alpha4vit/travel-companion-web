@@ -1,0 +1,90 @@
+/* Пример стилей для SearchBar.module.css */
+
+.searchBar {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    display: flex;
+    flex-direction: column; /* Размещаем элементы вертикально */
+    align-items: flex-start; /* Выравниваем по левому краю */
+    background-color: #fff;
+    border-radius: 10px; /* Увеличил радиус для более закругленных углов */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Увеличил тень для более выразительного вида */
+    padding: 15px; /* Увеличил отступы для более просторного вида */
+    transition: all 0.3s ease;
+    width: 300px;
+    z-index: 1000;
+}
+
+.searchBar input {
+    border: 2px solid #ddd; /* Добавил обводку серого цвета */
+    outline: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    flex-grow: 1; /* Растягиваем поле ввода, чтобы занимало всю доступную ширину */
+}
+
+.searchBar input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+.searchBar button {
+    border: none;
+    outline: none;
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.checkboxContainer {
+    margin-top: 10px;
+}
+
+.checkboxContainer label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.checkboxContainer input {
+    margin-right: 5px;
+}
+
+.selectContainer {
+    margin-top: 10px;
+}
+
+.selectContainer label {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.selectContainer select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.selectContainer select:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
+
+/* Медиа-запрос для адаптации на меньших экранах */
+@media screen and (max-width: 768px) {
+    .searchBar {
+        width: 100%;
+        left: 0;
+        border-radius: 0;
+    }
+}
+
