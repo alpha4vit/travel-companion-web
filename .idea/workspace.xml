@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/TravelCompanionSearchApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/BeanConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/ControllerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/TransportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/UserContoller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/PostDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/ReviewDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/TransportDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/exception/ExceptionBody.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/exception/InvalidRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/Transport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/props/JWTProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/repository/PostRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/repository/TransportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTEntityFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/security/JWTUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/PostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/TransportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/enums/PostType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/enums/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/mapper/DateMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/mapper/Mappable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/mapper/impl/PostMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/mapper/impl/TransportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/mapper/impl/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v1_init.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v2_insert.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/db.changelog.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/test/java/by/gurinovich/travelcompanionsearch/TravelCompanionSearchApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/api/PostService.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Posts/PosListItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Posts/Post.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Posts/PostList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/SearchMenu/SearchMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/SearchMenu/SearhMenu.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/hooks/useFetching.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/hooks/usePosts.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/Posts.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2ZIPokL2zJLHZrr7U0y8J8EaUXK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/programming/java proj/zki&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;3be5c74826957a26f2bf9b4e763763c0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\intlliJAVA\\IntelliJ IDEA 2022.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components" />
+      <recent name="D:\programming\java proj\travel-companion-app\TravelCompanionSearch" />
+      <recent name="D:\programming\java proj\travel-companion-app\TravelCompanionSearch\src" />
+      <recent name="D:\programming\java proj\travel-companion-app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src" />
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\Posts" />
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\style" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TravelCompanionSearchApplication">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="TravelCompanionSearchApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="TravelCompanionSearch" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.gurinovich.travelcompanionsearch.TravelCompanionSearchApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/travel-companion-web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+      <item itemvalue="Spring Boot.TravelCompanionSearchApplication" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBootOptions">
+    <option name="showAdditionalConfigNotification" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="" />
+      <created>1702106800466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702106800466</updated>
+      <workItem from="1702106801646" duration="13646000" />
+      <workItem from="1702218989424" duration="5830000" />
+      <workItem from="1702232013835" duration="2467000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
