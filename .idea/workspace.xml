@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="posts pages" />
+    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="posts pages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/enums/PostType.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/util/enums/PostType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/SearchMenu/SearchMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/SearchMenu/SearchMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/hooks/usePosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/hooks/usePosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/Posts.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +86,7 @@
       <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\style" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TravelCompanionSearchApplication">
+  <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -121,7 +127,7 @@
       <workItem from="1702106801646" duration="13646000" />
       <workItem from="1702218989424" duration="5830000" />
       <workItem from="1702232013835" duration="2467000" />
-      <workItem from="1702234790891" duration="380000" />
+      <workItem from="1702234790891" duration="4907000" />
     </task>
     <task id="LOCAL-00001" summary="search/filter bar">
       <created>1702234872650</created>
@@ -151,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702235166101</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="posts pages">
+      <created>1702235320839</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702235320839</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

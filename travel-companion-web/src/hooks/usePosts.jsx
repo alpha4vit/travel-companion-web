@@ -2,17 +2,47 @@ import {useMemo} from "react";
 
 export const useSortedPosts = (posts, sort) => {
     return useMemo(() => {
-        if (sort) {
-            return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]));
+        if (sort === "title") {
+            return [...posts].sort((a, b) => a.title.localeCompare(b.title));
+        }
+        else if (sort === 'date_there') {
+            return [...posts].sort((a, b) => {
+                const dateA = a.date_there.split('/').reverse().join('/');
+                const dateB = b.date_there.split('/').reverse().join('/');
+                return new Date(dateA) - new Date(dateB);
+            });
+        }
+        else if (sort === 'date_back') {
+            return [...posts].sort((a, b) => {
+                const dateA = a.date_back.split('/').reverse().join('/');
+                const dateB = b.date_back.split('/').reverse().join('/');
+                return new Date(dateB) - new Date(dateA);
+            });
         }
         return posts;
     }, [sort, posts]);
 }
 
-export const usePosts = (posts, sort, query) => {
-    console.log("dsadsadas")
+export const useFilteredPosts = (posts, sort, query) => {
     const sortedPosts = useSortedPosts(posts, sort)
     return useMemo(() => {
         return sortedPosts.filter(post => post.title.toLowerCase().includes(query.toLowerCase()));
     }, [sortedPosts, query]);
+}
+
+export const usePosts = (posts, sort, query, driverCheck, companionCheck) => {
+    const sortedPosts = useFilteredPosts(posts, sort, query);
+    return useMemo(() => {
+        return sortedPosts.filter(el => {
+            if (!driverCheck && !companionCheck){
+                return sortedPosts;
+            }
+            if (driverCheck){
+                return el.post_type.toLowerCase() === "driver";
+            }
+            if (companionCheck){
+                return el.post_type.toLowerCase() === "companion";
+            }
+        });
+    }, [sortedPosts, driverCheck, companionCheck]);
 }

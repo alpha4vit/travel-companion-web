@@ -8,11 +8,11 @@ import {usePosts} from "../hooks/usePosts";
 const Posts = () => {
 
     const [posts, setPosts] = useState([]);
-    const [filter, setFilter] = useState({query:"", sort:""});
-    const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query);
+    const [filter, setFilter] = useState({query:"", sort:"", driverCheck: false, companionCheck: false});
+    const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query, filter.driverCheck, filter.companionCheck);
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         const response = await PostService.getAll();
-        setPosts(response.data);
+        setPosts(response.data.sort((a, b) => a.title.localeCompare(b.title)));
     })
 
     useEffect(() => {
@@ -21,7 +21,9 @@ const Posts = () => {
 
     return (
         <div>
-            <SearchMenu filter={filter} setFilter={setFilter}/>
+            <SearchMenu
+                filter={filter}
+                setFilter={setFilter}/>
             <PostList posts={sortedAndSearchedPost}/>
         </div>
     );
