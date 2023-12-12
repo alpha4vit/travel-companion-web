@@ -65,7 +65,8 @@ const Auth = () => {
                                 <i onClick={(e) => showHidePassword(e.target)} className="uil uil-eye-slash showHidePw showHidePwLog"></i>
                             </div>
                             <span className="text">
-                 </span>
+
+                            </span>
                             <div className="checkbox-text">
                                 <div className="checkbox-content">
                                     <input type="checkbox" id="logCheck"/>
