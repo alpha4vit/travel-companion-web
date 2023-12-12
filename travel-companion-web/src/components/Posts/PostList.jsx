@@ -7,7 +7,7 @@ const PostList = ({posts}) => {
     return (
         <section className={classes.list}>
             {posts.map(post => (
-                <PosListItem post={post}/>
+                <PosListItem key={post.id} post={post}/>
             ))}
         </section>
     );

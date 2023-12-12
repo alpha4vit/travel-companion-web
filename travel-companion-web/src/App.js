@@ -3,6 +3,8 @@ import './styles/App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from "./components/UI/Navbar/Navbar";
 import Posts from "./pages/Posts";
+import Profile from "./pages/profile/Profile";
+import Auth from "./pages/auth/Auth";
 
 function App() {
 
@@ -11,6 +13,8 @@ function App() {
         <Navbar />
       <Routes>
           <Route path={"/posts"} element={<Posts />}></Route>
+          <Route path={"/profile"} element={<Profile />}></Route>
+          <Route path={"/auth"} element={<Auth />}></Route>
       </Routes>
     </BrowserRouter>
   );

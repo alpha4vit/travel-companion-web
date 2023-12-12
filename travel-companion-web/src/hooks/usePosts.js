@@ -1,4 +1,5 @@
 import {useMemo} from "react";
+import {logDOM} from "@testing-library/react";
 
 export const useSortedPosts = (posts, sort) => {
     return useMemo(() => {
@@ -24,7 +25,7 @@ export const useSortedPosts = (posts, sort) => {
 }
 
 export const useFilteredPosts = (posts, sort, query) => {
-    const sortedPosts = useSortedPosts(posts, sort)
+    const sortedPosts = useSortedPosts(posts, sort);
     return useMemo(() => {
         return sortedPosts.filter(post => post.title.toLowerCase().includes(query.toLowerCase()));
     }, [sortedPosts, query]);
@@ -37,6 +38,8 @@ export const usePosts = (posts, sort, query, driverCheck, companionCheck) => {
             if (!driverCheck && !companionCheck){
                 return sortedPosts;
             }
+            else if (driverCheck && companionCheck)
+                return sortedPosts;
             if (driverCheck){
                 return el.post_type.toLowerCase() === "driver";
             }
