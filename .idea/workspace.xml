@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="auth service / profile">
-      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="auth service fix">
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/utils/auth_check.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/UserContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/UserContoller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/App.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardBio.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardBio.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/auth/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/auth/Auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +97,7 @@
       <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\Posts" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TravelCompanionSearchApplication">
+  <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -137,7 +143,9 @@
       <workItem from="1702313119585" duration="2277000" />
       <workItem from="1702316171325" duration="2878000" />
       <workItem from="1702366429726" duration="9742000" />
-      <workItem from="1702413205671" duration="4120000" />
+      <workItem from="1702413205671" duration="4974000" />
+      <workItem from="1702454769138" duration="11187000" />
+      <workItem from="1702492980893" duration="3453000" />
     </task>
     <task id="LOCAL-00001" summary="search/filter bar">
       <created>1702234872650</created>
@@ -188,7 +196,21 @@
       <option name="project" value="LOCAL" />
       <updated>1702413486438</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="auth service fix">
+      <created>1702417917605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702417917605</updated>
+    </task>
+    <task id="LOCAL-00009" summary="auth service fix">
+      <created>1702417981580</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702417981580</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +222,7 @@
     <MESSAGE value="posts pages" />
     <MESSAGE value="search fixes" />
     <MESSAGE value="auth service / profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth service / profile" />
+    <MESSAGE value="auth service fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth service fix" />
   </component>
 </project>

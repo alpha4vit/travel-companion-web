@@ -1,5 +1,8 @@
 import React from 'react';
+
 const CardBio = ({user}) => {
+
+    console.log(user)
     return (
         <div className="card">
             <div className="card-body pb-0">
@@ -8,7 +11,7 @@ const CardBio = ({user}) => {
                         <div className="text-center border-end">
                             <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
                                  className="img-fluid avatar-xxl rounded-circle" alt=""></img>
-                            <h4 className="text-primary font-size-20 mt-3 mb-2">{user.usernam}</h4>
+                            <h4 className="text-primary font-size-20 mt-3 mb-2">{user.username}</h4>
                             {/*<h5 className="text-muted font-size-13 mb-0">Web Designer</h5>*/}
                         </div>
                     </div>
@@ -24,7 +27,7 @@ const CardBio = ({user}) => {
                                 <div className="col-md-12">
                                     <div>
                                         <p className="text-muted mb-2 fw-medium"><i
-                                            className="mdi mdi-email-outline me-2"></i>Janshwells@probic.com
+                                            className="mdi mdi-email-outline me-2"></i>{user.email}
                                         </p>
                                         <p className="text-muted fw-medium mb-0"><i
                                             className="mdi mdi-phone-in-talk-outline me-2"></i>418-955-4703

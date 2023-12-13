@@ -3,7 +3,7 @@ import "./Auth.css";
 import {AuthService} from "../../api/AuthService";
 
 
-const Auth = () => {
+const Auth = ({onLogin}) => {
 
     const [loginData, setLoginData] = useState({
         username: "",
@@ -45,6 +45,10 @@ const Auth = () => {
         const container = document.querySelector(".container");
         container.classList.remove("active");
     }
+    const login = () => {
+        AuthService.login(loginData);
+        onLogin();
+    }
 
     return (
         <div className="auth_wrapper">
@@ -76,7 +80,7 @@ const Auth = () => {
                             </div>
 
                             <div className="input-field button">
-                                <input onClick={() => AuthService.login(loginData)} className="button-text" value="Login"/>
+                                <input onClick={login} className="button-text" value="Login"/>
                             </div>
                         </form>
 

@@ -1,8 +1,10 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.2.96/css/materialdesignicons.min.css");
 
-body{
-    margin-top:70px;
-    background:#f7f8fa
+
+.container{
+    margin: 70px 10px 0;
+    max-width: 100vw;
+    width: 100vw;
 }
 
 .avatar-xxl {
