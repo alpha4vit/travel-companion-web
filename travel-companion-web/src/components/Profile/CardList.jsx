@@ -94,11 +94,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-1')"></i></a>
+                                                                           ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-1')">
+                                                                           >
                                                                             <i className="mdi mdi-trash-can-outline align-middle font-size-16 text-danger"></i>
                                                                         </a>
                                                                     </div>
@@ -196,11 +196,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-2')"></i></a>
+                                                                            ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-2')">
+                                                                           >
                                                                             <i className="mdi mdi-trash-can-outline font-size-16 text-danger align-middle"></i>
                                                                         </a>
                                                                     </div>
@@ -310,11 +310,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-3')"></i></a>
+                                                                           ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-3')">
+                                                                          >
                                                                             <i className="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"></i>
                                                                         </a>
                                                                     </div>
@@ -383,11 +383,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-4')"></i></a>
+                                                                           ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-4')">
+                                                                          >
                                                                             <i className="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"></i>
                                                                         </a>
                                                                     </div>
@@ -485,11 +485,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-5')"></i></a>
+                                                                           ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-5')">
+                                                                          >
                                                                             <i className="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"></i>
                                                                         </a>
                                                                     </div>
@@ -573,11 +573,11 @@ const CardList = () => {
                                                                            data-bs-toggle="modal"
                                                                            data-bs-target=".bs-example-new-task"><i
                                                                             className="mdi mdi-square-edit-outline font-size-16 align-middle"
-                                                                            onClick="editTask('task-item-6')"></i></a>
+                                                                           ></i></a>
                                                                     </div>
                                                                     <div>
                                                                         <a href="profile#" className="delete-item"
-                                                                           onClick="deleteProjects('task-item-6')">
+                                                                          >
                                                                             <i className="mdi mdi-trash-can-outline font-size-16 align-middle text-danger"></i>
                                                                         </a>
                                                                     </div>

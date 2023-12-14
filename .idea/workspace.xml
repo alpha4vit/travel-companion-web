@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="auth service fix">
-      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/App.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/utils/auth_check.js" afterDir="false" />
+    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="auth completed">
+      <change afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/static/photo_2022-06-07_14-04-36.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/ProfileEditForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/MyModal/MyModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/MyModal/MyModal.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/button/MyButton.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/button/MyButton.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/input/MyInput.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/input/MyInput.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/UserContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/UserContoller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/ReviewDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/ReviewDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v1_init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v2_insert.sql" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/resources/liquibase/changesets/v2_insert.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/api/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/api/UserService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardBio.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardBio.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/Navbar/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/auth/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/auth/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Profile/CardList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/profile/Profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +71,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/programming/java proj/travel-companion-app/travel-companion-web/src/utils&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/programming/java proj/travel-companion-app/TravelCompanionSearch/src/main/resources/static&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -83,11 +93,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\programming\java proj\travel-companion-app\TravelCompanionSearch\src\main\resources\static" />
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\UI" />
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\Profile" />
+      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\Posts" />
       <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\utils" />
-      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components" />
-      <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\UI" />
-      <recent name="D:\programming\java proj\travel-companion-app\TravelCompanionSearch" />
-      <recent name="D:\programming\java proj\travel-companion-app\TravelCompanionSearch\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\programming\java proj\travel-companion-app\travel-companion-web\src\components\UI" />
@@ -145,7 +155,10 @@
       <workItem from="1702366429726" duration="9742000" />
       <workItem from="1702413205671" duration="4974000" />
       <workItem from="1702454769138" duration="11187000" />
-      <workItem from="1702492980893" duration="3453000" />
+      <workItem from="1702492980893" duration="8184000" />
+      <workItem from="1702539616253" duration="4411000" />
+      <workItem from="1702546090494" duration="5235000" />
+      <workItem from="1702585662763" duration="776000" />
     </task>
     <task id="LOCAL-00001" summary="search/filter bar">
       <created>1702234872650</created>
@@ -210,7 +223,21 @@
       <option name="project" value="LOCAL" />
       <updated>1702417981580</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="auth completed">
+      <created>1702496533717</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702496533717</updated>
+    </task>
+    <task id="LOCAL-00011" summary="auth completed">
+      <created>1702496561431</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702496561431</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +250,7 @@
     <MESSAGE value="search fixes" />
     <MESSAGE value="auth service / profile" />
     <MESSAGE value="auth service fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth service fix" />
+    <MESSAGE value="auth completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth completed" />
   </component>
 </project>

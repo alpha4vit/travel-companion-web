@@ -2,11 +2,31 @@ import axios from "axios";
 
 export class UserService{
 
-    static url = "http://localhost:8080/api";
+    static url = "http://localhost:8080/api/v1/users/";
 
     static async getById(id){
-        const response = await axios.get(this.url+"/v1/users/"+id);
+        const response = await axios.get(this.url+id);
         return response.data;
+    }
+
+    static async updateUser(user){
+        const response = await axios.patch(this.url+user.id,
+                user,
+            {
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            }
+            );
+        console.log(response)
+    }
+
+    static async fetchAvatar(userId, setAvatar){
+        const response = await axios.get(this.url+userId+"/avatar", {
+            responseType:"arraybuffer"
+        });
+        const image = new Buffer(response.data, 'binary').toString('base64');
+        return `data:image/jpeg;base64;${image}`;
     }
 
 }
