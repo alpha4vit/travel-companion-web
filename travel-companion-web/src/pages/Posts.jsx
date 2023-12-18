@@ -6,15 +6,18 @@ import SearchMenu from "../components/SearchMenu/SearchMenu";
 import {usePosts} from "../hooks/usePosts";
 import Loader from "../components/UI/Loader/Loader";
 import {getPagesCount} from "../utils/pages";
-import Pagination from "../components/Pagination/Pagination";
+import PostCreationButton from "../components/UI/PostCreationButton/PostCreationButton";
+import MyModal from "../components/UI/MyModal/MyModal";
+import PostCreationForm from "../components/Posts/PostCreationForm";
 
-const Posts = () => {
+const Posts = ({isLoggedIn}) => {
 
     const [posts, setPosts] = useState([]);
     const [filter, setFilter] = useState({query:"", sort:"", driverCheck: false, companionCheck: false});
     const [totalPages, setTotalPages] = useState(0);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
+    const [isVisible, setVisible] = useState(false);
     const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query, filter.driverCheck, filter.companionCheck);
     const lastElement = useRef();
     const observer = useRef();
@@ -24,7 +27,8 @@ const Posts = () => {
         setPosts([...posts, ...response.data.body]);
         const totalCount = response.data.headers.total_count;
         setTotalPages(getPagesCount(totalCount, limit));
-    })
+    });
+
 
     useEffect(() => {
         if(isPostsLoading) return;
@@ -42,6 +46,8 @@ const Posts = () => {
         fetchPosts();
     }, [page]);
 
+
+
     const changePage = (page) => {
         setPage(page);
     }
@@ -51,6 +57,14 @@ const Posts = () => {
             <SearchMenu
                 filter={filter}
                 setFilter={setFilter}/>
+            {isLoggedIn &&
+                <PostCreationButton setVisible={setVisible} />
+            }
+            {isLoggedIn &&
+                <MyModal visible={isVisible} setVisible={setVisible}>
+                    <PostCreationForm posts={posts} setPosts={setPosts} setVisible={setVisible}/>
+                </MyModal>
+            }
             {postError &&
                 <h1 style={{marginTop: 50, textAlign:"center"}}>Произошла ошибка: {postError}</h1>
             }

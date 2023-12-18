@@ -4,7 +4,7 @@ import MyButton from "../UI/button/MyButton";
 import {UserService} from "../../api/UserService";
 
 
-const ProfileEditForm = ({user, setVisible}) => {
+const ProfileEditForm = ({user, setVisible, setAvatar}) => {
 
     const [edited, setEdited] = useState({...user});
 

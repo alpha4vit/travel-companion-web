@@ -29,13 +29,13 @@ function App() {
             <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
             {isLoggedIn ? (
                 <Routes>
-                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
                 </Routes>
             ) : (
                 <Routes>
-                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} />} />
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
                 </Routes>
             )}

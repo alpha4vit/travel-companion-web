@@ -1,0 +1,50 @@
+/* Ваш файл стилей (например, styles.css) */
+
+/* Стили для стилизованного select */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+}
+
+/* Стили для стрелочки в select */
+.select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Дополнительные стили при наведении на select */
+.custom-select:hover {
+    border-color: #888;
+}
+
+/* PostCreationForm.module.css */
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Другие стили могут быть добавлены здесь */

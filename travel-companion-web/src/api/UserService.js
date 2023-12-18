@@ -21,12 +21,5 @@ export class UserService{
         console.log(response)
     }
 
-    static async fetchAvatar(userId, setAvatar){
-        const response = await axios.get(this.url+userId+"/avatar", {
-            responseType:"arraybuffer"
-        });
-        const image = new Buffer(response.data, 'binary').toString('base64');
-        return `data:image/jpeg;base64;${image}`;
-    }
 
 }

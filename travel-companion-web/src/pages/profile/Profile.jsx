@@ -6,7 +6,6 @@ import CardList from "../../components/Profile/CardList";
 
 const Profile = () => {
 
-
     return (
         <div>
             <div style={{marginTop: "70px", marginLeft:"30px", marginRight:"15px", width:"95vw"}}>

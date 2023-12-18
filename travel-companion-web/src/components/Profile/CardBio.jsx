@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import MyModal from "../UI/MyModal/MyModal";
 import Profile from "../../pages/profile/Profile";
 import ProfileEditForm from "./ProfileEditForm";
-import {UserService} from "../../api/UserService";
-
 const CardBio = () => {
 
     const [modal, setModal] = useState(false);
@@ -22,8 +20,10 @@ const CardBio = () => {
 
     useEffect( () => {
         const fetchAvatar = async () => {
-            const response = await UserService.fetchAvatar(user.id);
-            setAvatar(response);
+
+            // const response = ImageService.fetchImage(user.avatar);
+            // console.log(response)
+            // setAvatar(response);
         };
         fetchAvatar();
     }, []);
@@ -32,13 +32,13 @@ const CardBio = () => {
     return (
         <div className="card">
             <MyModal visible={modal} setVisible={setModal}>
-                <ProfileEditForm setVisible={setModal} user={user}/>
+                <ProfileEditForm setAvatar={setAvatar} setVisible={setModal} user={user}/>
             </MyModal>
             <div className="card-body pb-0">
                 <div className="row align-items-center">
                     <div className="col-md-3">
                         <div className="text-center border-end">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                            <img src={avatar}
                                  className="img-fluid avatar-xxl rounded-circle" alt="" />
                             <h4 className="text-primary font-size-20 mt-3 mb-2">{user.username}</h4>
                         </div>
