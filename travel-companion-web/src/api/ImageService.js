@@ -1,28 +1,44 @@
+import axios from "axios";
 
-var Minio = require('minio')
+export class ImageService{
 
-var minioClient = new Minio.Client({
-    endPoint: 'http://localhost',
-    port: 9000,
-    useSSL: true,
-    accessKey: 'minioadmin',
-    secretKey: 'minioadmin',
-})
+    static user = JSON.parse(localStorage.getItem("authenticatedUser"));
+    static minioEndpoint = 'http://localhost:9000';
+    static bucketName = 'images';
+    static accessKey = 'roma';
+    static secretKey = 'roma';
 
-export const getFile = (fileName) => {
-    var size = 0;
-    minioClient.getObject('images', fileName, function (err, dataStream) {
-        if (err) {
-            return console.log(err)
+    static getObjectUrl = (bucket, objectName) => {
+        return `${this.minioEndpoint}/${bucket}/${objectName}`;
+    };
+
+    static async fetchImage(objectName) {
+
+        const url = this.getObjectUrl(this.bucketName, objectName);
+
+        try {
+            const response = await axios.get(url, {
+                responseType: 'arraybuffer',
+            });
+
+            const dataUrl = `data:image/jpeg;base64,${Buffer.from(response.data, 'binary').toString('base64')}`;
+            return dataUrl;
+        } catch (error) {
+            console.error('Error fetching image:', error);
         }
-        dataStream.on('data', function (chunk) {
-            size += chunk.length
+
+    };
+
+    static async loadImage(inputFile){
+        const formData = new FormData();
+        formData.append('avatar', inputFile);
+        const response = await axios.post(`http://localhost:8080/api/v1/users/${this.user.id}/avatar`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
         })
-        dataStream.on('end', function () {
-            console.log('End. Total size = ' + size)
-        })
-        dataStream.on('error', function (err) {
-            console.log(err)
-        })
-    })
+        console.log(response.data)
+        return response.data;
+    }
+
 }

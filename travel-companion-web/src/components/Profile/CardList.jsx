@@ -1,12 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const CardList = () => {
+const CardList = ({listType}) => {
+
+    const [list, setList] = useState([]);
+    var listName = "";
+    switch (listType){
+        case "posts": {
+            listName = "Публикации"
+
+        }
+    }
     return (
         <div>
             <div className="card">
                 <div className="tab-content p-4">
                     <div className="tab-pane active show" id="tasks-tab" role="tabpanel">
-                        <h4 className="card-title mb-4">Tasks</h4>
+                        <h4 className="card-title mb-4">{listName}</h4>
                         <div className="row">
                             <div className="col-xl-12">
                                 <div className="task-list-box" id="landing-task">

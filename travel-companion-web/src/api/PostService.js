@@ -18,4 +18,8 @@ export class PostService{
         const response = await axios.post(this.url+`/${user_id}/create`, post);
         return response.data;
     }
+
+    static async getAllByUserId(userId){
+        return await axios.get(this.url+`/user/${userId}`)
+    }
 }

@@ -2,37 +2,35 @@ import React, {useEffect, useState} from 'react';
 import MyModal from "../UI/MyModal/MyModal";
 import Profile from "../../pages/profile/Profile";
 import ProfileEditForm from "./ProfileEditForm";
+import {ImageService} from "../../api/ImageService";
+
+
+
 const CardBio = () => {
 
+
     const [modal, setModal] = useState(false);
-    const [avatar, setAvatar] = useState(null);
+    const [avatar, setAvatar] = useState("");
+
 
     var user = JSON.parse(localStorage.getItem("authenticatedUser"));
     const edit = () => {
         setModal(true);
     }
 
-    useEffect(() => {
-        user = JSON.parse(localStorage.getItem("authenticatedUser"));
-    }, [
-        modal
-    ])
-
     useEffect( () => {
-        const fetchAvatar = async () => {
-
-            // const response = ImageService.fetchImage(user.avatar);
-            // console.log(response)
-            // setAvatar(response);
-        };
-        fetchAvatar();
-    }, []);
-
+        user = JSON.parse(localStorage.getItem("authenticatedUser"));
+        const uploadAvatar = async () => {
+            const response = await ImageService.fetchImage(user.avatar);
+            setAvatar(response);
+        }
+        uploadAvatar();
+    }, [modal])
 
     return (
         <div className="card">
             <MyModal visible={modal} setVisible={setModal}>
-                <ProfileEditForm setAvatar={setAvatar} setVisible={setModal} user={user}/>
+                <ProfileEditForm avatar={avatar} setAvatar={setAvatar} setVisible={setModal} user={user}/>
             </MyModal>
             <div className="card-body pb-0">
                 <div className="row align-items-center">

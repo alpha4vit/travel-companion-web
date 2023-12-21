@@ -1,5 +1,4 @@
 import {useMemo} from "react";
-import {logDOM} from "@testing-library/react";
 
 export const useSortedPosts = (posts, sort) => {
     return useMemo(() => {
