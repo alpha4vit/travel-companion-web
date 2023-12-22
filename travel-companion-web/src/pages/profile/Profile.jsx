@@ -6,15 +6,7 @@ import CardList from "../../components/Profile/CardList";
 import {PostService} from "../../api/PostService";
 
 const Profile = () => {
-    const userId = JSON.parse(localStorage.getItem("authenticatedUser")).id;
-    const [listType, setListType] = useState("posts");
-    const fetchPosts = async () => {
-        const response = await PostService.getAllByUserId(userId);
-    }
-
-    useEffect(() => {
-            fetchPosts();
-    }, [])
+    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
 
 
     return (
@@ -23,7 +15,7 @@ const Profile = () => {
                 <div className="row">
                     <div className="col-xl-8">
                         <CardBio />
-                        <CardList listType={listType}/>
+                        <CardList user={user} />
                     </div>
                     <CardAbout />
                 </div>

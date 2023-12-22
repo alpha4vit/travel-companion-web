@@ -1,0 +1,21 @@
+.task-list-box:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.task-list-box {
+    transition: transform 0.3s ease-in-out;
+}
+
+.task-list-box .delete-item i,
+.task-list-box .edit-item i {
+    font-size: 24px;
+}
+
+.form-check{
+    padding-left: 0;
+}
+
+.col-info{
+    padding-left: 0;
+}

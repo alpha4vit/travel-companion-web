@@ -6,6 +6,7 @@ import {ImageService} from "../../api/ImageService";
 
 
 
+
 const CardBio = () => {
 
 
@@ -59,17 +60,6 @@ const CardBio = () => {
                                     </div>
                                 </div>
                             </div>
-                            <ul className="nav nav-tabs nav-tabs-custom border-bottom-0 mt-3 nav-justified mt-auto"
-                                role="tablist">
-                                <li className="nav-item" role="presentation">
-                                    <a className="nav-link px-4 "
-                                       href="https://bootdey.com/snippets/view/profile-projects"
-                                       target="__blank">
-                                        <span className="d-block d-sm-none"><i className="fas fa-home"></i></span>
-                                        <span className="d-none d-sm-block">Projects</span>
-                                    </a>
-                                </li>
-                            </ul>
                             <div onClick={edit} className="d-flex justify-content-end align-items-end mt-3">
                                 <a
                                    className="btn btn-lg btn-secondary mb-0 text-white mt-2 mb-3"
