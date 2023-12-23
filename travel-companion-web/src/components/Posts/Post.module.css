@@ -11,7 +11,7 @@
 }
 
 .event:hover {
-    transform: scale(1.02);
+    transform: scale(1.005);
 }
 
 .list {
@@ -65,3 +65,29 @@
 }
 
 
+.event {
+    position: relative;
+    /* Другие стили, которые у вас уже есть */
+}
+
+.responseButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.responseButton__btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Закругленные углы */
+    cursor: pointer;
+    transition: transform 0.3s ease, border-radius 0.3s ease; /* Добавлено свойство анимации */
+}
+
+.responseButton__btn:hover {
+    transform: scale(1.1); /* Изменение размера при наведении */
+    border-radius: 12px; /* Закругленные углы при наведении */
+}

@@ -8,7 +8,6 @@ import {PostService} from "../../api/PostService";
 const Profile = () => {
     const user = JSON.parse(localStorage.getItem("authenticatedUser"));
 
-
     return (
         <div>
             <div style={{marginTop: "70px", marginLeft:"30px", marginRight:"15px", width:"95vw"}}>
@@ -17,7 +16,7 @@ const Profile = () => {
                         <CardBio />
                         <CardList user={user} />
                     </div>
-                    <CardAbout />
+                    <CardAbout user={user}/>
                 </div>
             </div>
         </div>

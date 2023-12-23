@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CardItem.css";
-const PostCardItem = ({item, listType}) => {
+const PostCardItem = ({item, setDeleteConfirmVisible}) => {
 
     return (
             <div className="task-list-box" id="landing-task">
@@ -33,7 +33,9 @@ const PostCardItem = ({item, listType}) => {
                                                         className="mdi mdi-square-edit-outline  align-middle"
                                                     ></i></a>
                                                 </div>
-                                                <div>
+                                                <div onClick={() => {
+                                                    setDeleteConfirmVisible(true);
+                                                }}>
                                                     <a href="profile#" className="delete-item"
                                                     >
                                                         <i className="mdi mdi-trash-can-outline align-middle  text-danger"></i>

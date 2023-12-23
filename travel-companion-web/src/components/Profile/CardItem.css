@@ -1,6 +1,6 @@
 .task-list-box:hover {
     cursor: pointer;
-    transform: scale(1.02);
+    transform: scale(1.005);
 }
 
 .task-list-box {

@@ -1,8 +1,13 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import classes from "./Post.module.css";
+const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
 
-const PosListItem = ({post}) => {
+    const respond = () => {
+        setResponsedPostId(post.id);
+        setResponseVisible(true);
+    }
+
     return (
         <div key={post.id} className={classes.event}>
             <Link to={`/posts/${post.id}`} className={classes.link}>
@@ -13,6 +18,9 @@ const PosListItem = ({post}) => {
                     <p className={classes.event__fee}>{'Оплата: ' + post.fee}</p>
                 </div>
             </Link>
+            <div className={classes.responseButton}>
+                <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
+            </div>
         </div>
     );
 };

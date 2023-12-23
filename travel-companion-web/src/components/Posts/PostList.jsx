@@ -2,12 +2,13 @@ import React from 'react';
 import PosListItem from "./PosListItem";
 import classes from "./Post.module.css";
 
-const PostList = ({posts}) => {
+const PostList = ({posts, setResponseVisible, setResponsedPostId}) => {
+
 
     return (
         <section className={classes.list}>
             {posts.map(post => (
-                <PosListItem key={post.id} post={post}/>
+                <PosListItem setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} key={post.id} post={post}/>
             ))}
         </section>
     );

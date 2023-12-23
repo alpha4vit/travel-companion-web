@@ -6,8 +6,12 @@ export class PostReponseService{
 
     static async getAllByUserId(userId){
         const response = await axios.get(this.url+`/users/${userId}`)
-        console.log(response.data)
         return response.data;
+    }
+
+    static async respond(response, userId, postId){
+        const res = await axios.post(this.url+`/users/${userId}/${postId}`, response);
+        console.log(res);
     }
 
 }

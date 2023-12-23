@@ -5,6 +5,7 @@ import Navbar from './components/UI/Navbar/Navbar';
 import Posts from './pages/Posts';
 import Profile from './pages/profile/Profile';
 import Auth from './pages/auth/Auth';
+import Post from "./components/Posts/Post";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+                    <Route path="/posts/:postId" element={<Post />} />
                 </Routes>
             ) : (
                 <Routes>

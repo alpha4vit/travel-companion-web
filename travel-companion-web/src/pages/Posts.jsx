@@ -9,6 +9,7 @@ import {getPagesCount} from "../utils/pages";
 import PostCreationButton from "../components/UI/PostCreationButton/PostCreationButton";
 import MyModal from "../components/UI/MyModal/MyModal";
 import PostCreationForm from "../components/Posts/PostCreationForm";
+import ResponseForm from "../components/Posts/ResponseForm";
 
 const Posts = ({isLoggedIn}) => {
 
@@ -18,6 +19,8 @@ const Posts = ({isLoggedIn}) => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [isVisible, setVisible] = useState(false);
+    const [isResponseVisible, setResponseVisible] = useState(false);
+    const [responsedPostId, setResponsedPostId] = useState("");
     const sortedAndSearchedPost = usePosts(posts, filter.sort, filter.query, filter.driverCheck, filter.companionCheck);
     const lastElement = useRef();
     const observer = useRef();
@@ -65,10 +68,15 @@ const Posts = ({isLoggedIn}) => {
                     <PostCreationForm posts={posts} setPosts={setPosts} setVisible={setVisible}/>
                 </MyModal>
             }
+            {isResponseVisible &&
+                <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
+                    <ResponseForm setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
+                </MyModal>
+            }
             {postError &&
                 <h1 style={{marginTop: 50, textAlign:"center"}}>Произошла ошибка: {postError}</h1>
             }
-            <PostList posts={sortedAndSearchedPost}/>
+            <PostList setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} posts={sortedAndSearchedPost}/>
             <div ref={lastElement} style={{height: 20}}></div>
             {isPostsLoading &&
                 <div style={{display: "flex", justifyContent: "center", marginTop: 50}}><Loader/></div>

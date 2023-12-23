@@ -7,11 +7,14 @@ import {UserService} from "../../api/UserService";
 import posts from "../../pages/Posts";
 import {PostReponseService} from "../../api/PostReponseService";
 import ResponseCardItem from "./ResponseCardItem";
+import MyModal from "../UI/MyModal/MyModal";
+import DeleteConfirmForm from "./DeleteConfirmForm";
 
 const CardList = ({user}) => {
 
     const [listType, setListType] = useState("posts");
     const [list, setList] = useState([]);
+    const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
 
     const [fetchList, isListLoading, listError] = useFetching(async () => {
         var response = [];
@@ -52,6 +55,11 @@ const CardList = ({user}) => {
 
     return (
         <div>
+            {deleteConfirmVisible &&
+                <MyModal visible={deleteConfirmVisible} setVisible={setDeleteConfirmVisible}>
+                    <DeleteConfirmForm />
+                </MyModal>
+            }
             <div className="card">
                 <div className="tab-content p-4">
                     <div className="tab-pane active show" id="tasks-tab" role="tabpanel">
@@ -80,13 +88,13 @@ const CardList = ({user}) => {
                             {listType === 'posts' ?
                                 <div className="col-xl-12">
                                     {list.map(item => (
-                                        <PostCardItem item={item} />
+                                        <PostCardItem setDeleteConfirmVisible={setDeleteConfirmVisible} item={item} />
                                     ))}
                                 </div>
                                 :
                                 <div className="col-xl-12">
                                     {list.map(item => (
-                                        <ResponseCardItem item={item} />
+                                        <ResponseCardItem setDeleteConfirmVisible={setDeleteConfirmVisible} item={item} />
                                     ))}
                                 </div>
                             }

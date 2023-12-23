@@ -24,4 +24,10 @@ export class PostService{
         return response.data;
     }
 
+    static async getById(postId){
+        const response = await axios.get(this.url+`/${postId}`);
+        return response.data;
+
+    }
+
 }
