@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {PostService} from "../../api/PostService"; // Подключите ваши стили
 import classes from "./Post.module.css";
 import MyModal from "../UI/MyModal/MyModal";
@@ -50,9 +50,10 @@ const Post = () => {
             </div>
 
             <div className={classes.userInfo}>
-                <h3 className={classes.username}>{user.username}</h3>
+                <Link to={`/users/${user.id}`}>
+                    <h3 className={classes.username}>{user.username}</h3>
+                </Link>
                 <p className={classes.userEmail}>{`Email: ${user.email}`}</p>
-                {/* Другая краткая информация о пользователе */}
             </div>
             <div className={classes.responseButton}>
                 <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>

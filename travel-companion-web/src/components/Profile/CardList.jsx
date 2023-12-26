@@ -9,12 +9,19 @@ import {PostReponseService} from "../../api/PostReponseService";
 import ResponseCardItem from "./ResponseCardItem";
 import MyModal from "../UI/MyModal/MyModal";
 import DeleteConfirmForm from "./DeleteConfirmForm";
+import PostCreationForm from "../Posts/PostCreationForm";
+import PostEditForm from "./PostEditForm";
 
 const CardList = ({user}) => {
 
     const [listType, setListType] = useState("posts");
     const [list, setList] = useState([]);
-    const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
+    const [deletePostConfirmVisible, setDeletePostConfirmVisible] = useState(false);
+    const [deleteResponseConfirmVisible, setDeleteResponseConfirmVisible] = useState(false);
+    const [postForDelete, setPostForDelete] = useState(null);
+    const [responseForDelete, setResponseForDelete] = useState(null);
+    const [postEditVisible, setPostEditVisible] = useState(false);
+    const [postForEdit, setPostForEdit] = useState(null);
 
     const [fetchList, isListLoading, listError] = useFetching(async () => {
         var response = [];
@@ -31,9 +38,21 @@ const CardList = ({user}) => {
         setList(response);
     });
 
+    const confirmDelete = () => {
+        PostService.deleteById(postForDelete.id);
+        fetchList();
+        setDeletePostConfirmVisible(false);
+    }
+
+    const editPost = () => {
+        PostService.update(postForEdit);
+        fetchList();
+        setPostEditVisible(false);
+    }
+
     useEffect(() => {
         fetchList();
-    }, [listType])
+    }, [setPostEditVisible, postEditVisible,  setDeletePostConfirmVisible, deletePostConfirmVisible, listType])
 
     var listName = "";
     switch (listType){
@@ -48,16 +67,26 @@ const CardList = ({user}) => {
         default: listName = "Публикации";
     }
 
-
     const handleTabClick = (type) => {
         setListType(type);
     };
 
     return (
         <div>
-            {deleteConfirmVisible &&
-                <MyModal visible={deleteConfirmVisible} setVisible={setDeleteConfirmVisible}>
-                    <DeleteConfirmForm />
+            {deleteResponseConfirmVisible &&
+                <MyModal visible={deleteResponseConfirmVisible} setVisible={setDeleteResponseConfirmVisible}>
+                    <DeleteConfirmForm fetchList={fetchList} setDeleteResponseConfirmVisible={setDeleteResponseConfirmVisible} postForDelete={responseForDelete}/>
+                </MyModal>
+            }
+            {deletePostConfirmVisible &&
+                <MyModal visible={deletePostConfirmVisible} setVisible={setDeletePostConfirmVisible}>
+                    <DeleteConfirmForm confirmDelete={confirmDelete} setDeletePostConfirmVisible={setDeletePostConfirmVisible} postForDelete={postForDelete}/>
+                </MyModal>
+            }
+            {postEditVisible &&
+
+                <MyModal visible={postEditVisible} setVisible={setPostEditVisible}>
+                    <PostEditForm editPost={editPost} setPost={setPostForEdit} post={postForEdit}/>
                 </MyModal>
             }
             <div className="card">
@@ -88,13 +117,13 @@ const CardList = ({user}) => {
                             {listType === 'posts' ?
                                 <div className="col-xl-12">
                                     {list.map(item => (
-                                        <PostCardItem setDeleteConfirmVisible={setDeleteConfirmVisible} item={item} />
+                                        <PostCardItem setPostEditVisible={setPostEditVisible} setPostForEdit={setPostForEdit} setPostForDelete={setPostForDelete} setDeleteConfirmVisible={setDeletePostConfirmVisible} item={item} />
                                     ))}
                                 </div>
                                 :
                                 <div className="col-xl-12">
                                     {list.map(item => (
-                                        <ResponseCardItem setDeleteConfirmVisible={setDeleteConfirmVisible} item={item} />
+                                        <ResponseCardItem setResponseForDelete={setResponseForDelete} setDeleteConfirmVisible={setDeleteResponseConfirmVisible} item={item} />
                                     ))}
                                 </div>
                             }

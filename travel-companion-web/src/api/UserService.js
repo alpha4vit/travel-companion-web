@@ -9,15 +9,15 @@ export class UserService{
         return response.data;
     }
 
-    static async updateUser(user){
-        const response = await axios.patch(this.url+user.id,
-                user,
+    static async updateUser(user) {
+        const response = await axios.patch(this.url + user.id,
+            user,
             {
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 }
             }
-            );
+        );
         console.log(response)
     }
 

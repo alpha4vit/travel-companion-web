@@ -11,9 +11,9 @@ const ResponseForm = ({responsedPostId, setResponseVisible}) => {
     const user = JSON.parse(localStorage.getItem("authenticatedUser"));
     const [response, setResponse] = useState({title:"", comment:"", stars:0});
 
-    const respond = async () => {
+    const respond =  () => {
         console.log(responsedPostId)
-        await PostReponseService.respond(response, user.id, responsedPostId);
+        PostReponseService.respond(response, user.id, responsedPostId);
         setResponseVisible(false);
     }
 

@@ -30,4 +30,19 @@ export class PostService{
 
     }
 
+    static async deleteById(postId){
+        const response = await axios.delete(this.url+`/${postId}`);
+    }
+
+    static async update(post) {
+        const response = await axios.patch(this.url + `/${post.id}`,
+            post,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+    }
+
 }

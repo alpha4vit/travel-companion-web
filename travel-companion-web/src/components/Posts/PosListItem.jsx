@@ -3,6 +3,8 @@ import {Link} from "react-router-dom";
 import classes from "./Post.module.css";
 const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
 
+    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
+
     const respond = () => {
         setResponsedPostId(post.id);
         setResponseVisible(true);
@@ -18,9 +20,11 @@ const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
                     <p className={classes.event__fee}>{'Оплата: ' + post.fee}</p>
                 </div>
             </Link>
-            <div className={classes.responseButton}>
-                <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
-            </div>
+            {user && user.is_email_verified &&
+                <div className={classes.responseButton}>
+                    <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
+                </div>
+            }
         </div>
     );
 };

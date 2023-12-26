@@ -1,6 +1,7 @@
 import React from 'react';
 import "./CardItem.css";
-const PostCardItem = ({item, setDeleteConfirmVisible}) => {
+
+const PostCardItem = ({item, setDeleteConfirmVisible, setPostForDelete, setPostForEdit, setPostEditVisible}) => {
 
     return (
             <div className="task-list-box" id="landing-task">
@@ -25,18 +26,23 @@ const PostCardItem = ({item, setDeleteConfirmVisible}) => {
                                         </div>
                                         <div className="col-xl-7 col-md-6 col-sm-7">
                                             <div className="d-flex flex-wrap gap-3 mt-3 mt-xl-0 justify-content-md-end">
-                                                <div>
-                                                    <a href="profile#"
+                                                <div className="action-button" onClick={() => {
+                                                    setPostEditVisible(true);
+                                                    setPostForEdit(item);
+                                                }
+                                                }>
+                                                    <a
                                                        className="mb-0 text-muted fw-medium edit-item"
                                                        data-bs-toggle="modal"
                                                        data-bs-target=".bs-example-new-task"><i
                                                         className="mdi mdi-square-edit-outline  align-middle"
                                                     ></i></a>
                                                 </div>
-                                                <div onClick={() => {
+                                                <div className="action-button" onClick={() => {
                                                     setDeleteConfirmVisible(true);
+                                                    setPostForDelete(item);
                                                 }}>
-                                                    <a href="profile#" className="delete-item"
+                                                    <a className="delete-item"
                                                     >
                                                         <i className="mdi mdi-trash-can-outline align-middle  text-danger"></i>
                                                     </a>

@@ -11,7 +11,7 @@ import MyModal from "../components/UI/MyModal/MyModal";
 import PostCreationForm from "../components/Posts/PostCreationForm";
 import ResponseForm from "../components/Posts/ResponseForm";
 
-const Posts = ({isLoggedIn}) => {
+const Posts = ({isLoggedIn, isEmailVerified}) => {
 
     const [posts, setPosts] = useState([]);
     const [filter, setFilter] = useState({query:"", sort:"", driverCheck: false, companionCheck: false});
@@ -50,7 +50,6 @@ const Posts = ({isLoggedIn}) => {
     }, [page]);
 
 
-
     const changePage = (page) => {
         setPage(page);
     }
@@ -60,10 +59,10 @@ const Posts = ({isLoggedIn}) => {
             <SearchMenu
                 filter={filter}
                 setFilter={setFilter}/>
-            {isLoggedIn &&
+            {isLoggedIn && isEmailVerified &&
                 <PostCreationButton setVisible={setVisible} />
             }
-            {isLoggedIn &&
+            {isLoggedIn && isEmailVerified &&
                 <MyModal visible={isVisible} setVisible={setVisible}>
                     <PostCreationForm posts={posts} setPosts={setPosts} setVisible={setVisible}/>
                 </MyModal>

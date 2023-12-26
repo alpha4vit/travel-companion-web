@@ -10,6 +10,8 @@ import Post from "./components/Posts/Post";
 function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwtAccessToken'));
+    const [isEmailVerified, setIsEmailVerified]= useState(false);
+
 
     useEffect(() => {
         const jwtToken = localStorage.getItem('jwtAccessToken');
@@ -20,6 +22,18 @@ function App() {
         setIsLoggedIn(true);
     };
 
+    useEffect(() => {
+        if (isLoggedIn){
+            const user = JSON.parse(localStorage.getItem("authenticatedUser"));
+            if (user){
+                console.log(user)
+                if (user.is_email_verified)
+                    setIsEmailVerified(true)
+            }
+        }
+    }, [isLoggedIn])
+
+
     const handleLogout = () => {
         localStorage.clear();
         setIsLoggedIn(false);
@@ -28,17 +42,19 @@ function App() {
     return (
         <BrowserRouter>
             <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-            {isLoggedIn ? (
+            {isLoggedIn && isEmailVerified ? (
                 <Routes>
-                    <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} isEmailVerified={isEmailVerified}/>} />
+                    <Route path="/profile" element={<Profile owner={true} />} />
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
                     <Route path="/posts/:postId" element={<Post />} />
+                    <Route path="/users/:userId" element={<Profile owner={false} />} />
                 </Routes>
             ) : (
                 <Routes>
                     <Route path="/posts" element={<Posts isLoggedIn={isLoggedIn} />} />
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+                    <Route path="/posts/:postId" element={<Post />} />
                 </Routes>
             )}
         </BrowserRouter>

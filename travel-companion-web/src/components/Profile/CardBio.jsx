@@ -7,14 +7,13 @@ import {ImageService} from "../../api/ImageService";
 
 
 
-const CardBio = () => {
+const CardBio = ({user}) => {
 
 
     const [modal, setModal] = useState(false);
     const [avatar, setAvatar] = useState("");
 
 
-    var user = JSON.parse(localStorage.getItem("authenticatedUser"));
     const edit = () => {
         setModal(true);
     }

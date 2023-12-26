@@ -1,0 +1,9 @@
+
+.action-button{
+    transition: transform 0.3s ease-in-out;
+}
+
+.action-button:hover{
+    scale: 1.002;
+    cursor: pointer;
+}

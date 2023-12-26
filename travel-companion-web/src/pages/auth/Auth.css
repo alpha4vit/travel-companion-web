@@ -61,6 +61,12 @@
     transition: opacity 0.2s ease;
 }
 
+
+.container.confirmation{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
 .container.active .forms{
     height: 600px;
 }

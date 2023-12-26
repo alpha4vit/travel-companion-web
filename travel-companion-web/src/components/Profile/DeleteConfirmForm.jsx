@@ -1,10 +1,16 @@
 import React from 'react';
+import Post from "../Posts/Post";
+import {PostService} from "../../api/PostService";
 
-const DeleteConfirmForm = () => {
+const DeleteConfirmForm = ({postForDelete, setDeletePostConfirmVisible, confirmDelete}) => {
+
+
+
     return (
         <form>
-            <button>Подтвердить</button>
-            <button>Отклонить</button>
+            <label>Вы дейстивтельно хотите удалить: {postForDelete.title} ?</label>
+            <button onClick={confirmDelete} type="button">Подтвердить</button>
+            <button type="button">Отклонить</button>
         </form>
     );
 };

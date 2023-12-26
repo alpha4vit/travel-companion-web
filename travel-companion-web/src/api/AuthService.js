@@ -35,7 +35,6 @@ export class AuthService{
             else
                 console.log("registration error")
         });
-
         callback();
     }
 

@@ -10,8 +10,7 @@ export class PostReponseService{
     }
 
     static async respond(response, userId, postId){
-        const res = await axios.post(this.url+`/users/${userId}/${postId}`, response);
-        console.log(res);
+        await axios.post(this.url + `/users/${userId}/${postId}`, response);
     }
 
 }
