@@ -15,7 +15,6 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
     const [post, setPost] = useState({title: "", description: "", fee:"", date_there:new Date(), date_back:new Date(), post_type:"DRIVER", transport_id:1});
 
     const createPost = async () => {
-        console.log(post);
         const created = await PostService.createPost(post);
         setPosts([...posts, created]);
         setVisible(false);

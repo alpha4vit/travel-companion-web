@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export class UserService{
+export class UserService {
 
     static url = "http://localhost:8080/api/v1/users/";
 
-    static async getById(id){
-        const response = await axios.get(this.url+id);
+    static async getById(id) {
+        const response = await axios.get(this.url + id);
         return response.data;
     }
 
@@ -20,7 +20,4 @@ export class UserService{
         );
         console.log(response)
     }
-
-
-
 }

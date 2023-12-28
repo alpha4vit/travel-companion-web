@@ -14,7 +14,7 @@ const ProfileEditForm = ({user, setVisible, avatar, setAvatar}) => {
     const editPost = async () => {
         await UserService.updateUser(edited);
         if (isImageDownloaded){
-            const response  = await ImageService.loadImage(avatar);
+            const response  = await ImageService.loadImage(avatar, user);
             setEdited({...edited, avatar: response})
             localStorage.setItem("authenticatedUser", JSON.stringify({...edited, avatar: response}));
         }

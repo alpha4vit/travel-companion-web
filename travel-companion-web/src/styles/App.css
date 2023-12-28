@@ -10,3 +10,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ReviewsContainer.css */
+
+.reviews-container {
+  height: 400px; /* Установите желаемую высоту контейнера */
+  overflow-y: auto;
+  border: 1px solid #ccc; /* Добавьте рамку для визуального отделения */
+}
+
+.reviews-list {
+  padding: 10px; /* Добавьте отступы по желанию */
+}

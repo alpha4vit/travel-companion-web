@@ -17,7 +17,6 @@ const Post = () => {
     useEffect( () => {
         const fetch = async () => {
             const response = await PostService.getById(postId);
-            console.log(response)
             setPost(response);
             setUser(response.user);
         }

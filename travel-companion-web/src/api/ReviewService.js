@@ -9,4 +9,11 @@ export class ReviewService{
         return response.data;
     }
 
+    static async sendReview(userId, review){
+        const authenticated = JSON.parse(localStorage.getItem("authenticatedUser"))
+        const response = await axios.post(this.url+`/users/${userId}/${authenticated.id}`,
+            review);
+        console.log(response)
+    }
+
 }

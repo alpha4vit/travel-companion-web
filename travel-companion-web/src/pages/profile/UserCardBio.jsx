@@ -1,35 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import MyModal from "../UI/MyModal/MyModal";
-import Profile from "../../pages/profile/Profile";
-import ProfileEditForm from "./ProfileEditForm";
+import {useEffect, useState} from "react";
 import {ImageService} from "../../api/ImageService";
+import {useParams} from "react-router-dom";
+import {UserService} from "../../api/UserService";
 
 
+const UserCardBio = () => {
 
-
-const CardBio = ({user, setUser}) => {
-
-
-    const [modal, setModal] = useState(false);
     const [avatar, setAvatar] = useState("");
+    const {userId} = useParams();
+    const [user, setUser] = useState({});
 
-    const edit = () => {
-        setModal(true);
-    }
+    useEffect(() => {
+        const fetch = async () => {
+            const response = await UserService.getById(userId);
+            setUser(response);
+        }
+        fetch();
+    }, [])
 
-    useEffect( () => {
-        const uploadAvatar = async () => {
-            const response = await ImageService.fetchImage(user.avatar, user);
+    useEffect(() => {
+        const fetchAvatar = async () => {
+            const userTemp = await UserService.getById(userId);
+            const response = await ImageService.fetchImage(userTemp.avatar);
             setAvatar(response);
         }
-        uploadAvatar();
-    }, [modal])
+        fetchAvatar();
+    }, [])
 
     return (
         <div className="card">
-            <MyModal visible={modal} setVisible={setModal}>
-                <ProfileEditForm avatar={avatar} setAvatar={setAvatar} setVisible={setModal} user={user} />
-            </MyModal>
             <div className="card-body pb-0">
                 <div className="row align-items-center">
                     <div className="col-md-3">
@@ -57,14 +56,6 @@ const CardBio = ({user, setUser}) => {
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={edit} className="d-flex justify-content-end align-items-end mt-3">
-                                <a
-                                   className="btn btn-lg btn-secondary mb-0 text-white mt-2 mb-3"
-                                   data-bs-toggle="modal"
-                                   data-bs-target=".bs-example-new-task">
-                                    <i className="mdi mdi-square-edit-outline font-size-16 align-middle"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,4 +65,4 @@ const CardBio = ({user, setUser}) => {
     );
 };
 
-export default CardBio;
+export default UserCardBio;
