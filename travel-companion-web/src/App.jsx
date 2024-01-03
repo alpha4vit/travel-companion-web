@@ -7,6 +7,7 @@ import Profile from './pages/profile/Profile';
 import Auth from './pages/auth/Auth';
 import Post from "./components/Posts/Post";
 import UserProfile from "./components/UserProfile/UserProf";
+import EmailConfirmation from "./pages/auth/EmailConfirmation";
 
 function App() {
 
@@ -39,6 +40,10 @@ function App() {
         setIsLoggedIn(false);
     };
 
+    const handleEmailConfirmation = () => {
+        setIsEmailVerified(true);
+    }
+
     return (
         <BrowserRouter>
             <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
@@ -56,6 +61,7 @@ function App() {
                     <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
                     <Route path="/posts/:postId" element={<Post />} />
                     <Route path="/users/:userId" element={<UserProfile />} />
+                    <Route path="/auth/confirm" element={<EmailConfirmation onConfirmation={handleEmailConfirmation}/>}/>
                 </Routes>
             )}
         </BrowserRouter>

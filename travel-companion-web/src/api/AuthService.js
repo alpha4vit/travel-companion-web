@@ -12,7 +12,7 @@ export class AuthService{
                     "Content-Type": "application/json"
                 }
             });
-        if (true) {
+        if (response.status === 200) {
             localStorage.setItem("jwtAccessToken", response.data.accessToken);
             localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
             const user = await UserService.getById(response.data.id);
@@ -24,23 +24,40 @@ export class AuthService{
     };
 
     static async register(registrationData, callback){
-        await axios.post(this.url+"/register",
+        const response = await axios.post(this.url+"/register",
             JSON.stringify(registrationData), {
             headers:{
                 "Content-Type": "application/json"
             }
-        }).then(response => {
-            if (response.status === 201)
-                console.log("registered")
-            else
-                console.log("registration error")
         });
+        if (response.status === 201){
+            localStorage.setItem("jwtAccessToken", response.data.accessToken);
+            localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
+            const user = await UserService.getById(response.data.id);
+            localStorage.setItem("authenticatedUser", JSON.stringify(user));
+        }
         callback();
     }
 
-    static logout = () =>{
-        localStorage.clear();
-        window.location.href = "/auth";
+    static async confirm(){
+        const authenticated = JSON.parse(localStorage.getItem("authenticatedUser"));
+        const response = await axios.post(this.url+"/enable",
+            {
+                id: authenticated.id,
+                confirmation_code: authenticated.confirmation_code
+            }, {
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            });
+        if (response.status === 200){
+            const current = JSON.parse(localStorage.getItem("authenticatedUser"));
+            console.log(current)
+            const user = await UserService.getById(current.id);
+            localStorage.setItem("authenticatedUser", JSON.stringify(user));
+            window.location.href  = '/posts'
+        }
     }
+
 
 }

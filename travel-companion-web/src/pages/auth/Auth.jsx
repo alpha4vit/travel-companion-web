@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import "./Auth.css";
 import {AuthService} from "../../api/AuthService";
+import {Link} from "react-router-dom";
 
 
-const Auth = ({onLogin}) => {
+const Auth = ({onLogin, onVerification}) => {
 
     const [loginData, setLoginData] = useState({
         username: "",
@@ -45,9 +46,14 @@ const Auth = ({onLogin}) => {
         const container = document.querySelector(".container");
         container.classList.remove("active");
     }
+
     const login = () => {
         AuthService.login(loginData);
         onLogin();
+    }
+
+    const register = async () => {
+        await AuthService.register(registrationData, hideRegistrationForm);
     }
 
     return (
@@ -76,7 +82,7 @@ const Auth = ({onLogin}) => {
                                     <input type="checkbox" id="logCheck"/>
                                     <label htmlFor="logCheck" className="text">Запомнить меня</label>
                                 </div>
-                                <a className="text">Забыли пароль?</a>
+                                <a style={{cursor:"pointer"}} className="text">Забыли пароль?</a>
                             </div>
 
                             <div className="input-field button">
@@ -86,7 +92,7 @@ const Auth = ({onLogin}) => {
 
                         <div className="login-signup">
                     <span className="text">Еще не зарегистрированы?
-                        <a onClick={showRegistrationFrom} className="text signup-link" id="signup-link">Зарегистрироваться</a>
+                        <a style={{cursor:"pointer"}} onClick={showRegistrationFrom} className="text signup-link" id="signup-link">Зарегистрироваться</a>
                     </span>
                         </div>
                     </div>
@@ -116,14 +122,14 @@ const Auth = ({onLogin}) => {
                                 </div>
                             </div>
 
-                            <div className="input-field button">
-                                <input onClick={() => AuthService.register(registrationData, hideRegistrationForm)} className="button-text" value="Sign up"/>
-                            </div>
+                            <Link to={"/auth/confirm"}><div className="input-field button">
+                                <input onClick={register} className="button-text" value="Sign up"/>
+                            </div></Link>
                         </form>
 
                         <div className="login-signup">
                     <span className="text">Уже есть аккаунт?
-                        <a onClick={hideRegistrationForm} id="login-link" className="text login-link">Авторизоваться!</a>
+                        <a style={{cursor:"pointer"}} onClick={hideRegistrationForm} id="login-link" className="text login-link">Авторизоваться!</a>
                     </span>
                         </div>
                     </div>

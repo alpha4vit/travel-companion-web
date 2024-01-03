@@ -20,16 +20,17 @@ const CardAbout = ({user}) => {
 
     return (
             <div className="col-xl-4">
-                <div className="card">
-                    {reviews.length !== 0 &&
-                        reviews.map((review, index) => (
-                        <Review showDivider={index !== reviews.length - 1} review={review}/>
-                    ))}
-                    {reviews.length === 0 &&
-                        <p>Отзывы отсутствуют</p>
-                    }
+                <div className="card reviews-container">
+                    <div className="review-list">
+                        {reviews.length !== 0 &&
+                            reviews.map((review, index) => (
+                                <Review showDivider={index !== reviews.length - 1} review={review}/>
+                            ))}
+                        {reviews.length === 0 &&
+                            <p>Отзывы отсутствуют</p>
+                        }
+                    </div>
                 </div>
-
             </div>
     );
 };
