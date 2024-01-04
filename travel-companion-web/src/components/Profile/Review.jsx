@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import classes from "./CardAbout.module.css";
 import {UserService} from "../../api/UserService";
 import {ImageService} from "../../api/ImageService";
+import StarIcon from '@mui/icons-material/Star';
+import Rating from "@mui/material/Rating";
 
 const Review = ({review, showDivider}) => {
 
@@ -10,7 +12,7 @@ const Review = ({review, showDivider}) => {
     const generateStars = () => {
         const starsArray = [];
         for (let i = 0; i < review.stars; i++) {
-            starsArray.push(<span key={i}>⭐</span>);
+            starsArray.push(<span key={i}><StarIcon style={{color: '#fccf03'}} /></span>);
         }
         return starsArray;
     };
@@ -32,7 +34,13 @@ const Review = ({review, showDivider}) => {
                 <div className="user-info">
                     <h3 className={classes.username}>{review.title}</h3>
                     <div className={classes.rating}>
-                        {generateStars()}
+                        <Rating
+                            name="text-feedback"
+                            value={review.stars}
+                            readOnly
+                            precision={0.5}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
                     </div>
                 </div>
             </div>

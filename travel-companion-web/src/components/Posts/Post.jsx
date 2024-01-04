@@ -37,7 +37,7 @@ const Post = () => {
         <div className={classes.postPage}>
             {isResponseVisible &&
                 <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
-                    <ResponseForm setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
+                    <ResponseForm setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} callback={() => console.log(10)}/>
                 </MyModal>
             }
             <div>{post.title}</div>

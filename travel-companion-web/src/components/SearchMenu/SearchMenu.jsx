@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
 import classes from "./SearhMenu.module.css"
+import {MySwitch} from "../UI/Switch";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import {FormControlLabel, TextField} from "@mui/material";
 
 const SearchMenu = ({filter, setFilter}) => {
 
@@ -26,47 +32,44 @@ const SearchMenu = ({filter, setFilter}) => {
         setIsChekedCompanion(!isCheckedCompanion)
     }
 
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
     return (
         <div className={classes.searchBar}>
-            <div className={classes.searchContainer}>
-                <input
-                    value={filter.query}
-                    onChange={e => setFilter({...filter, query: e.target.value})}
-                    type="text" placeholder="Поиск по названию..." />
+            <div >
+                <TextField value={filter.query}
+                           onChange={e => setFilter({...filter, query: e.target.value})} id="standard-basic" label="Поиск по названию..." variant="standard" />
             </div>
             <div className={classes.checkboxContainer}>
-                <label>
-                    <input
-                        onChange={handleDriverCheckbox}
-                        value="driver"
-                        type="checkbox"
-                    />
-                    Водители
-                </label>
+                <FormControlLabel onChange={handleDriverCheckbox}
+                                  control={<MySwitch defaultChecked />}
+                                  label="Попутчики"
+                />
             </div>
             <div className={classes.checkboxContainer}>
-                <label>
-                    <input
-                        onChange={handleCompanionCheckbox}
-                        value="driver"
-                        type="checkbox"
-                    />
-                    Попутчики
-                </label>
+                <FormControlLabel onChange={handleCompanionCheckbox}
+                                  control={<MySwitch defaultChecked />}
+                                  label="Водители"
+                />
             </div>
-            <div className={classes.selectContainer}>
-                <label>
-                    Сортировать по:
-                    <select
-                        onChange={e => setFilter({...filter, sort: e.target.value})}
-                        value={filter.sort}>
-                        <option disabled value="">...</option>
-                        <option value="date_there">Дате отправления</option>
-                        <option value="date_back">Дате возвращения</option>
-                        <option value="title">Названию</option>
-                    </select>
-                </label>
-            </div>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Сортировать по</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={filter.sort}
+                    label="Сортировать по"
+                    onChange={e => setFilter({...filter, sort: e.target.value})}
+                >
+                    <MenuItem value="date_there">Дате отправления</MenuItem>
+                    <MenuItem value="date_back">Дате возвращения</MenuItem>
+                    <MenuItem value="title">Названию</MenuItem>
+                </Select>
+            </FormControl>
         </div>
     );
 };

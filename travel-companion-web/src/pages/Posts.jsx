@@ -10,6 +10,8 @@ import PostCreationButton from "../components/UI/PostCreationButton/PostCreation
 import MyModal from "../components/UI/MyModal/MyModal";
 import PostCreationForm from "../components/Posts/PostCreationForm";
 import ResponseForm from "../components/Posts/ResponseForm";
+import {Fab} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
 const Posts = ({isLoggedIn, isEmailVerified}) => {
 
@@ -60,7 +62,15 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
                 filter={filter}
                 setFilter={setFilter}/>
             {isLoggedIn && isEmailVerified &&
-                <PostCreationButton setVisible={setVisible} />
+                <div style={{
+                    position: 'fixed',
+                    bottom: 20,
+                    right: 20,
+                }}>
+                    <Fab onClick={()=>setVisible(true)} color="secondary" aria-label="add">
+                        <AddIcon />
+                    </Fab>
+                </div>
             }
             {isLoggedIn && isEmailVerified &&
                 <MyModal visible={isVisible} setVisible={setVisible}>
@@ -69,13 +79,13 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
             }
             {isResponseVisible &&
                 <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
-                    <ResponseForm setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
+                    <ResponseForm callback={() => console.log(10)} setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
                 </MyModal>
             }
             {postError &&
                 <h1 style={{marginTop: 50, textAlign:"center"}}>Произошла ошибка: {postError}</h1>
             }
-            <PostList setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} posts={sortedAndSearchedPost}/>
+            <PostList isLoggedIn={isLoggedIn} isEmailVerified={isEmailVerified} setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} posts={sortedAndSearchedPost}/>
             <div ref={lastElement} style={{height: 20}}></div>
             {isPostsLoading &&
                 <div style={{display: "flex", justifyContent: "center", marginTop: 50}}><Loader/></div>

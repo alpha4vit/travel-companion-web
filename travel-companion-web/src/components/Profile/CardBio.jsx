@@ -3,9 +3,8 @@ import MyModal from "../UI/MyModal/MyModal";
 import Profile from "../../pages/profile/Profile";
 import ProfileEditForm from "./ProfileEditForm";
 import {ImageService} from "../../api/ImageService";
-
-
-
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
 
 const CardBio = ({user, setUser}) => {
 
@@ -28,7 +27,7 @@ const CardBio = ({user, setUser}) => {
     return (
         <div className="card">
             <MyModal visible={modal} setVisible={setModal}>
-                <ProfileEditForm avatar={avatar} setAvatar={setAvatar} setVisible={setModal} user={user} />
+                <ProfileEditForm setUser={setUser} avatar={avatar} setAvatar={setAvatar} setVisible={setModal} user={user} />
             </MyModal>
             <div className="card-body pb-0">
                 <div className="row align-items-center">
@@ -57,13 +56,10 @@ const CardBio = ({user, setUser}) => {
                                     </div>
                                 </div>
                             </div>
-                            <div onClick={edit} className="d-flex justify-content-end align-items-end mt-3">
-                                <a
-                                   className="btn btn-lg btn-secondary mb-0 text-white mt-2 mb-3"
-                                   data-bs-toggle="modal"
-                                   data-bs-target=".bs-example-new-task">
-                                    <i className="mdi mdi-square-edit-outline font-size-16 align-middle"></i>
-                                </a>
+                            <div onClick={edit} className="d-flex justify-content-end align-items-end mt-3 pb-3">
+                                <Fab size="small"  aria-label="edit">
+                                    <EditIcon />
+                                </Fab>
                             </div>
                         </div>
                     </div>

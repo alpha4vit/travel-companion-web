@@ -1,14 +1,14 @@
 import React from 'react';
-import PosListItem from "./PosListItem";
+import PostListItem from "./PosListItem";
 import classes from "./Post.module.css";
 
-const PostList = ({posts, setResponseVisible, setResponsedPostId}) => {
+const PostList = ({posts, setResponseVisible, setResponsedPostId, isEmailVerified, isLoggedIn}) => {
 
 
     return (
         <section className={classes.list}>
             {posts.map(post => (
-                <PosListItem setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} key={post.id} post={post}/>
+                <PostListItem isLoggedIn={isLoggedIn} isEmailVerified={isEmailVerified} setResponsedPostId={setResponsedPostId} setResponseVisible={setResponseVisible} key={post.id} post={post}/>
             ))}
         </section>
     );

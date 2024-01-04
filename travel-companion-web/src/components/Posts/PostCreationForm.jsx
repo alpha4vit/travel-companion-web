@@ -6,6 +6,8 @@ import {PostService} from "../../api/PostService";
 import classes from "./PostCreationForm.module.css";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import {TextField} from "@mui/material";
+import {Input, Textarea} from "@mui/joy";
 
 
 const PostCreationForm = ({setVisible, posts, setPosts}) => {
@@ -22,49 +24,42 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
 
     const updateStartDate = (date, setDate, date_type) => {
         setDate(date);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-
-        const formattedDate = `${day}/${month}/${year}`;
         if (date_type === "there")
-            setPost({...post, date_there: formattedDate});
+            setPost({...post, date_there: date});
         else if (date_type === "back")
-            setPost({...post, date_back: formattedDate});
+            setPost({...post, date_back: date});
     }
 
     return (
         <form>
             <div className={classes.formGroup}>
-                <label htmlFor="title">Заголовок</label>
-                <MyInput
-                    id="title"
+                <TextField
+                    fullWidth
+                    id="description"
                     onChange={e => setPost({...post, title: e.target.value})}
                     value={post.title}
-                    type="text"
-                    placeholder="Заголовок"
+                    label="Заголовок"
+                    variant="outlined"
                 />
             </div>
-
             <div className={classes.formGroup}>
-                <label htmlFor="description">Описание</label>
-                <MyInput
+                <TextField
+                    fullWidth
                     id="description"
                     onChange={e => setPost({...post, description: e.target.value})}
                     value={post.description}
-                    type="text"
-                    placeholder="Описание"
+                    label="Описание"
+                    variant="outlined"
                 />
             </div>
-
             <div className={classes.formGroup}>
-                <label htmlFor="fee">Оплата</label>
-                <MyInput
+                <TextField
+                    fullWidth
                     id="fee"
                     onChange={e => setPost({...post, fee: e.target.value})}
                     value={post.fee}
-                    type="text"
-                    placeholder="Оплата"
+                    label="Оплата"
+                    variant="outlined"
                 />
             </div>
 

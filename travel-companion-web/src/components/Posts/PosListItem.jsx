@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import classes from "./Post.module.css";
-const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
-
+const PosListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified}) => {
     const user = JSON.parse(localStorage.getItem("authenticatedUser"));
 
     const respond = () => {
@@ -12,7 +11,7 @@ const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
 
     return (
         <div key={post.id} className={classes.event}>
-            <Link to={`/posts/${post.id}`} className={classes.link}>
+            <Link to={`/posts/${post.id}`} state={{isEmailVerified: isEmailVerified, isLoggedIn: isLoggedIn}} className={classes.link}>
                 <div className={classes.event__content}>
                     <h2 className={classes.event__title}>{post.title}</h2>
                     <p className={classes.event__description}>{post.description}</p>
@@ -20,7 +19,7 @@ const PosListItem = ({post, setResponseVisible, setResponsedPostId}) => {
                     <p className={classes.event__fee}>{'Оплата: ' + post.fee}</p>
                 </div>
             </Link>
-            {user && user.is_email_verified &&
+            {isLoggedIn && isEmailVerified &&
                 <div className={classes.responseButton}>
                     <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
                 </div>

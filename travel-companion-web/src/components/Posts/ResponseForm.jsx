@@ -6,7 +6,7 @@ import MyButton from "../UI/button/MyButton";
 import {PostReponseService} from "../../api/PostReponseService";
 import StarRating from "../UI/Star/StarRating";
 
-const ResponseForm = ({responsedPostId, setResponseVisible}) => {
+const ResponseForm = ({responsedPostId, setResponseVisible, callback}) => {
 
     const user = JSON.parse(localStorage.getItem("authenticatedUser"));
     const [response, setResponse] = useState({title:"", comment:"", stars:0});
@@ -15,6 +15,7 @@ const ResponseForm = ({responsedPostId, setResponseVisible}) => {
         console.log(responsedPostId)
         PostReponseService.respond(response, user.id, responsedPostId);
         setResponseVisible(false);
+        callback();
     }
 
     return (

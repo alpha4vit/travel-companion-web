@@ -6,20 +6,22 @@ import {PostService} from "../../api/PostService";
 import {ImageService} from "../../api/ImageService";
 
 
-const ProfileEditForm = ({user, setVisible, avatar, setAvatar}) => {
+const ProfileEditForm = ({user, setVisible, avatar, setAvatar, setUser}) => {
 
     const [edited, setEdited] = useState({...user});
     const [isImageDownloaded, setImageDownloaded] = useState(false);
 
-    const editPost = async () => {
+    const editUser = async () => {
         await UserService.updateUser(edited);
         if (isImageDownloaded){
             const response  = await ImageService.loadImage(avatar, user);
             setEdited({...edited, avatar: response})
             localStorage.setItem("authenticatedUser", JSON.stringify({...edited, avatar: response}));
+            setUser({...edited, avatar: response});
         }
         else {
             localStorage.setItem("authenticatedUser", JSON.stringify(edited));
+            setUser(edited);
         }
         setVisible(false);
         setImageDownloaded(false);
@@ -38,7 +40,7 @@ const ProfileEditForm = ({user, setVisible, avatar, setAvatar}) => {
                 <MyInput onChange={e => setEdited({...edited, email: e.target.value})} value={edited.email} type="text" placeholder="Электронная почта"/>
                 <MyInput onChange={e => setEdited({...edited, phone_number: e.target.value})} value={edited.phone_number} type="text" placeholder="Номер телефона"/>
                 <MyInput onChange={e => setEdited({...edited, bio: e.target.value})} value={edited.bio} type="text" placeholder="Биография"/>
-                <MyButton type="button" onClick={editPost}>Сохранить изменения</MyButton>
+                <MyButton type="button" onClick={editUser}>Сохранить изменения</MyButton>
             </form>
         </div>
     );

@@ -47,4 +47,8 @@
     font-weight: bold;
 }
 
+.date-picker{
+    border: 1px gainsboro;
+}
+
 /* Другие стили могут быть добавлены здесь */

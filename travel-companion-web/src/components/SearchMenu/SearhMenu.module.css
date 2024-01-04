@@ -17,7 +17,7 @@
     z-index: 1000;
 }
 
-.searchBar input {
+.searchBar {
     border: 2px solid #ddd; /* Добавил обводку серого цвета */
     outline: none;
     padding: 10px;
@@ -27,7 +27,7 @@
     flex-grow: 1; /* Растягиваем поле ввода, чтобы занимало всю доступную ширину */
 }
 
-.searchBar input:focus {
+.searchBar {
     border-color: #2980b9;
     box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
 }
@@ -47,13 +47,13 @@
     margin-top: 10px;
 }
 
-.checkboxContainer label {
+.checkboxContainer {
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
-.checkboxContainer input {
+.checkboxContainer  {
     margin-right: 5px;
 }
 
@@ -61,7 +61,7 @@
     margin-top: 10px;
 }
 
-.selectContainer label {
+.selectContainer  {
     font-size: 14px;
     margin-right: 10px;
 }

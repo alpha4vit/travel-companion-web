@@ -1,0 +1,91 @@
+/* PostTemp.module.css */
+
+.centeredContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-top: 20px;
+}
+
+.adContainer {
+    max-width: 800px;
+    width: 90%;
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.userSection {
+    margin-bottom: 20px;
+}
+
+.hr-divider {
+    border-top: 1px solid #ccc; /* Добавлен стиль */
+    margin: 20px 0; /* Добавлен стиль */
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.userRating {
+    display: flex;
+    align-items: center;
+}
+
+.ratingValue {
+    margin-right: 5px;
+}
+
+.adSection {
+    flex: 1;
+}
+
+.tripInfo, .responses {
+    margin-top: 20px;
+}
+
+.responseButton__btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Закругленные углы */
+    cursor: pointer;
+    transition: transform 0.3s ease, border-radius 0.3s ease; /* Добавлено свойство анимации */
+}
+
+.responseButton__btn:hover {
+    transform: scale(1.1); /* Изменение размера при наведении */
+    border-radius: 12px; /* Закругленные углы при наведении */
+}
+
+/* PostTemp.module.css */
+
+.responsesCount {
+    margin-left: auto;
+}
+
+.responsesText {
+    color: gray;
+}
+
+.adSection {
+    word-wrap: break-word;
+}
+
