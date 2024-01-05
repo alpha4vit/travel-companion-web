@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import classes from "./PostCreationForm.module.css";
-import MyInput from "../UI/input/MyInput";
-import DatePicker from "react-datepicker";
-import MyButton from "../UI/button/MyButton";
 import {PostReponseService} from "../../api/PostReponseService";
-import StarRating from "../UI/Star/StarRating";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const ResponseForm = ({responsedPostId, setResponseVisible, callback}) => {
 
@@ -22,25 +20,26 @@ const ResponseForm = ({responsedPostId, setResponseVisible, callback}) => {
         <div>
             <form>
                 <div className={classes.formGroup}>
-                    <label htmlFor="title">Заголовок</label>
-                    <MyInput
-                        id="title"
-                        type="text"
-                        placeholder="Заголовок"
-                        onChange={(e) => setResponse({...response, title: e.target.value})}
-                    />
-                </div>
-
-                <div className={classes.formGroup}>
-                    <label htmlFor="description">Комментарий</label>
-                    <MyInput
+                    <TextField
+                        fullWidth
                         id="description"
-                        type="text"
-                        placeholder="Комментарий"
-                        onChange={(e) => setResponse({...response, comment: e.target.value})}
+                        onChange={(e) => setResponse({...response, title: e.target.value})}
+                        value={response.title}
+                        label="Заголовок"
+                        variant="outlined"
                     />
                 </div>
-                <MyButton onClick={() => respond()} style={{marginTop: "7px"}} type="button" >Откликнуться</MyButton>
+                <div className={classes.formGroup}>
+                    <TextField
+                        fullWidth
+                        id="description"
+                        onChange={(e) => setResponse({...response, comment: e.target.value})}
+                        value={response.comment}
+                        label="Комментарий"
+                        variant="outlined"
+                    />
+                </div>
+                <Button fullWidth variant="contained" onClick={() => respond()}>Откликнуться!</Button>
             </form>
         </div>
     );

@@ -12,6 +12,7 @@ import PostCreationForm from "../components/Posts/PostCreationForm";
 import ResponseForm from "../components/Posts/ResponseForm";
 import {Fab} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import FadeModalDialog from "../components/UI/MyModal/FadeModalDialog";
 
 const Posts = ({isLoggedIn, isEmailVerified}) => {
 
@@ -51,13 +52,18 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
         fetchPosts();
     }, [page]);
 
-
-    const changePage = (page) => {
-        setPage(page);
-    }
-
     return (
         <div>
+            {isResponseVisible &&
+                <FadeModalDialog title="Откликнуться на объявление" open={isResponseVisible} setOpen={setResponseVisible}>
+                    <ResponseForm callback={() => console.log(10)} setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
+                </FadeModalDialog>
+            }
+            {isLoggedIn && isEmailVerified &&
+                <FadeModalDialog title="Создание объявления" open={isVisible} setOpen={setVisible}>
+                    <PostCreationForm  posts={posts} setPosts={setPosts} setVisible={setVisible}/>
+                </FadeModalDialog>
+            }
             <SearchMenu
                 filter={filter}
                 setFilter={setFilter}/>
@@ -71,16 +77,6 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
                         <AddIcon />
                     </Fab>
                 </div>
-            }
-            {isLoggedIn && isEmailVerified &&
-                <MyModal visible={isVisible} setVisible={setVisible}>
-                    <PostCreationForm posts={posts} setPosts={setPosts} setVisible={setVisible}/>
-                </MyModal>
-            }
-            {isResponseVisible &&
-                <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
-                    <ResponseForm callback={() => console.log(10)} setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
-                </MyModal>
             }
             {postError &&
                 <h1 style={{marginTop: 50, textAlign:"center"}}>Произошла ошибка: {postError}</h1>

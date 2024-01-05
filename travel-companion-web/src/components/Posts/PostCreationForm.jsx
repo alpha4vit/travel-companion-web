@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import {UserService} from "../../api/UserService";
-import MyInput from "../UI/input/MyInput";
+import 'react-datepicker/dist/react-datepicker.css';
 import MyButton from "../UI/button/MyButton";
 import {PostService} from "../../api/PostService";
 import classes from "./PostCreationForm.module.css";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import {TextField} from "@mui/material";
-import {Input, Textarea} from "@mui/joy";
-
+import {DatePicker, DesktopDatePicker} from "@mui/x-date-pickers";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Button from '@mui/material/Button';
 
 const PostCreationForm = ({setVisible, posts, setPosts}) => {
 
@@ -62,47 +63,64 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
                     variant="outlined"
                 />
             </div>
-
-            <div className={classes.formGroup}>
-                <label htmlFor="dateThere">Дата отправления</label>
+            <div className={classes.formGroup} style={{ display: 'flex', gap: '8px' }}>
                 <DatePicker
-                    id="dateThere"
+                    label="Дата отправления"
                     selected={dateThere}
-                    onChange={(date) => updateStartDate(date, setDateThere, "there")}
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="Выберите дату"
+                    onChange={(date) => updateStartDate(date, setDateThere, 'there')}
+                    format="dd/MM/yyyy"
+                    style={{zIndex:13000}}
+                    slotProps={{
+                        layout: {
+                            sx: {
+                                '.MuiDateCalendar-root': {
+                                    marginRight: 50,
+                                    zIndex:13000
+                                }
+                            }
+                        }
+                    }}
                 />
-            </div>
-
-            <div className={classes.formGroup}>
-                <label htmlFor="dateBack">Дата прибытия</label>
                 <DatePicker
-                    id="dateBack"
+                    label="Дата прибытия"
+                    format="dd/MM/yyyy"
                     selected={dateBack}
                     onChange={(date) => updateStartDate(date, setDateBack, "back")}
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="Выберите дату"
+                    style={{zIndex:13000}}
+                    slotProps={{
+                        layout: {
+                            sx: {
+                                '.MuiDateCalendar-root': {
+                                    marginLeft: 10,
+                                    zIndex:13000
+                                }
+                            }
+                        }
+                    }}
                 />
             </div>
 
-            <div className={classes.formGroup}>
-                <label htmlFor="postType">Тип поста</label>
-                <div className={classes.selectWrapper}>
-                    <select
-                        id="postType"
-                        className={classes.customSelect}
-                        onChange={e => setPost({...post, post_type: e.target.value})}
-                        value={post.post_type}>
-                        <option value="DRIVER">Водитель</option>
-                        <option value="COMPANION">Попутчик</option>
-                    </select>
-                    <div className={classes.selectArrow}></div>
-                </div>
-            </div>
 
-            <MyButton style={{marginTop: "7px"}} type="button" onClick={createPost}>Сохранить изменения</MyButton>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Тип объявления</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="postType"
+                    value={post.post_type}
+                    label="Тип объявления"
+                    onChange={e => setPost({...post, post_type: e.target.value})}
+                >
+                    <MenuItem value="DRIVER">Водитель</MenuItem>
+                    <MenuItem value="COMPANION">Попутчик</MenuItem>
+                </Select>
+            </FormControl>
+            <div style={{marginTop:10}}>
+                <Button fullWidth variant="contained" onClick={createPost}>Сохранить изменения</Button>
+            </div>
         </form>
+
     );
 };
+
 
 export default PostCreationForm;

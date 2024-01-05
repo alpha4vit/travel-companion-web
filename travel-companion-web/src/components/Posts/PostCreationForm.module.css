@@ -47,8 +47,21 @@
     font-weight: bold;
 }
 
-.date-picker{
-    border: 1px gainsboro;
+/* Добавьте эти стили в ваш файл стилей */
+
+/* Стили для обертки формы */
+.formGroup {
+    margin-bottom: 16px;
 }
 
-/* Другие стили могут быть добавлены здесь */
+/* Стили для лейбла */
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.datePicker {
+    width: 100%;
+}

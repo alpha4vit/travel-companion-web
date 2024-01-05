@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import classes from "./Post.module.css";
-const PosListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified}) => {
-    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
+import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
+import ResponseForm from "./ResponseForm";
+import Button from "@mui/material/Button";
+
+const PostListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified}) => {
+    const user = JSON.parse(localStorage.getItem("authenticatedUser"));const [modal, setModal] = useState(false);
 
     const respond = () => {
         setResponsedPostId(post.id);
@@ -11,6 +15,7 @@ const PosListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, 
 
     return (
         <div key={post.id} className={classes.event}>
+
             <Link to={`/posts/${post.id}`} state={{isEmailVerified: isEmailVerified, isLoggedIn: isLoggedIn}} className={classes.link}>
                 <div className={classes.event__content}>
                     <h2 className={classes.event__title}>{post.title}</h2>
@@ -21,11 +26,11 @@ const PosListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, 
             </Link>
             {isLoggedIn && isEmailVerified &&
                 <div className={classes.responseButton}>
-                    <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
+                    <Button onClick={() => respond()} variant="contained" >Откликнуться</Button>
                 </div>
             }
         </div>
     );
 };
 
-export default PosListItem;
+export default PostListItem;

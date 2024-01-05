@@ -5,6 +5,7 @@ import ProfileEditForm from "./ProfileEditForm";
 import {ImageService} from "../../api/ImageService";
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
 
 const CardBio = ({user, setUser}) => {
 
@@ -26,9 +27,9 @@ const CardBio = ({user, setUser}) => {
 
     return (
         <div className="card">
-            <MyModal visible={modal} setVisible={setModal}>
+            <FadeModalDialog title="Изменение профиля" open={modal} setOpen={setModal}>
                 <ProfileEditForm setUser={setUser} avatar={avatar} setAvatar={setAvatar} setVisible={setModal} user={user} />
-            </MyModal>
+            </FadeModalDialog>
             <div className="card-body pb-0">
                 <div className="row align-items-center">
                     <div className="col-md-3">

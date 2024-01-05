@@ -9,6 +9,7 @@ import ResponseForm from "./ResponseForm";
 import Button from '@mui/material/Button';
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
+import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
 
 const PostTemp = () => {
 
@@ -21,7 +22,7 @@ const PostTemp = () => {
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isResponseVisible, setResponseVisible] = useState(false);
 
-    useEffect( () => {
+    useEffect(() => {
         const fetch = async () => {
             const response = await PostService.getById(postId);
             setPost(response)
@@ -32,10 +33,10 @@ const PostTemp = () => {
         }
         if (localStorage.getItem("authenticatedUser") == null)
             setIsAuthenticated(false);
-        else{
+        else {
             const authenticatedUser = JSON.parse(localStorage.getItem("authenticatedUser"));
             console.log(authenticatedUser)
-            if (authenticatedUser.is_email_verified){
+            if (authenticatedUser.is_email_verified) {
                 setIsEmailVerified(true);
                 setIsAuthenticated(true);
             }
@@ -43,35 +44,33 @@ const PostTemp = () => {
         fetch();
     }, [])
 
-
-    const respond = () => {
-        setResponseVisible(true);
-    }
-
-
     return (
-        <div className={classes.centeredContainer}>
+        <div>
             {isResponseVisible &&
-                <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
-                    <ResponseForm callback={() => setPost({...post, responses_count:post.responses_count+1})} setResponseVisible={setResponseVisible} responsedPostId={post.id} />
-                </MyModal>
+                <FadeModalDialog title="Откликнуться на объявление" open={isResponseVisible}
+                                 setOpen={setResponseVisible}>
+                    <ResponseForm callback={() => setPost({...post, responses_count: post.responses_count + 1})}
+                                  setResponseVisible={setResponseVisible} responsedPostId={post.id}/>
+                </FadeModalDialog>
             }
-            <div className={classes.adContainer}>
-                <div className={classes.userSection}>
+            <div className={classes.centeredContainer}>
+                <div className={classes.adContainer}>
+                    <div className={classes.userSection}>
                         <div className={classes.userInfo}>
                             <Link to={`/users/${user.id}`}>
-                            <img src={avatar} alt="Аватар пользователя" className="img-fluid avatar-xxl rounded-circle mr-2"/>
+                                <img src={avatar} alt="Аватар пользователя"
+                                     className="img-fluid avatar-xxl rounded-circle mr-2"/>
                             </Link>
 
-                                <div>
+                            <div>
                                 <h4>{user.username}</h4>
-                                <div className  ={classes.userRating}>
+                                <div className={classes.userRating}>
                                     <span className={classes.ratingValue}><Rating
                                         name="text-feedback"
                                         value={user.rating}
                                         readOnly
                                         precision={0.01}
-                                        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                        emptyIcon={<StarIcon style={{opacity: 0.55}} fontSize="inherit"/>}
                                     /></span>
                                 </div>
                             </div>
@@ -80,24 +79,25 @@ const PostTemp = () => {
                                 <p className={classes.responsesText}>Был в сети: 15:21</p>
                             </div>
                         </div>
-                    <hr className={classes.hrDivider} />
-                </div>
-                <div className={classes.adSection}>
-                    <h2>{post.title}</h2>
-                    <p className={classes.description}>{post.description}</p>
-
-                    <div className={classes.tripInfo}>
-                        <h4>Информация о поездке</h4>
-                        <p>Маршрут: Город А - Город Б</p>
-                        <p>Дата отправления: {post.date_there}</p>
-                        <p>Дата возвращения: {post.date_back}</p>
+                        <hr className={classes.hrDivider}/>
                     </div>
-                    {isEmailVerified && isAuthenticated &&
-                        <hr className={classes.hrDivider} />
-                    }
-                    {isEmailVerified && isAuthenticated &&
-                        <button onClick={respond} className={classes.responseButton__btn}>Откликнуться</button>
-                    }
+                    <div className={classes.adSection}>
+                        <h2>{post.title}</h2>
+                        <p className={classes.description}>{post.description}</p>
+
+                        <div className={classes.tripInfo}>
+                            <h4>Информация о поездке</h4>
+                            <p>Маршрут: Город А - Город Б</p>
+                            <p>Дата отправления: {post.date_there}</p>
+                            <p>Дата возвращения: {post.date_back}</p>
+                        </div>
+                        {isEmailVerified && isAuthenticated &&
+                            <hr className={classes.hrDivider}/>
+                        }
+                        {isEmailVerified && isAuthenticated &&
+                            <Button onClick={() => setResponseVisible(true)} variant="contained" >Откликнуться</Button>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
