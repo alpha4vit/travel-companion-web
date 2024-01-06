@@ -18,6 +18,7 @@ const PostTemp = () => {
     const [post, setPost] = useState({});
     const [user, setUser] = useState({});
     const [avatar, setAvatar] = useState("");
+    const [rating, setRating] = useState(0);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isResponseVisible, setResponseVisible] = useState(false);
@@ -28,6 +29,7 @@ const PostTemp = () => {
             setPost(response)
             const userTemp = await UserService.getById(response.user.id);
             setUser(userTemp)
+            setRating(userTemp.rating);
             const avatarTemp = await ImageService.fetchImage(response.user.avatar);
             setAvatar(avatarTemp);
         }
@@ -43,6 +45,7 @@ const PostTemp = () => {
         }
         fetch();
     }, [])
+
 
     return (
         <div>
@@ -65,13 +68,15 @@ const PostTemp = () => {
                             <div>
                                 <h4>{user.username}</h4>
                                 <div className={classes.userRating}>
-                                    <span className={classes.ratingValue}><Rating
-                                        name="text-feedback"
-                                        value={user.rating}
-                                        readOnly
-                                        precision={0.01}
-                                        emptyIcon={<StarIcon style={{opacity: 0.55}} fontSize="inherit"/>}
-                                    /></span>
+                                    <span className={classes.ratingValue}>
+                                        <Rating
+                                            name="text-feedback"
+                                            value={rating}
+                                            readOnly
+                                            precision={0.01}
+                                            emptyIcon={<StarIcon style={{ opacity: 1}} fontSize="inherit" />}
+                                        />
+                                    </span>
                                 </div>
                             </div>
                             <div className={classes.responsesCount}>

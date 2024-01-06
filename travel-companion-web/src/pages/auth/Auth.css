@@ -27,13 +27,13 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 0 20px;
+    margin: 40px 20px 0;
 }
 
 .container .forms{
     display: flex;
     align-items: center;
-    height: 440px;
+    height: 480px;
     width: 200%;
     transition: height 0.2s ease;
 }
@@ -53,6 +53,7 @@
 }
 
 .container .signup{
+    margin-top: 40px;
     opacity: 0;
     transition: opacity 0.09s ease;
 }
@@ -62,13 +63,14 @@
 }
 
 
+
 .container.confirmation{
     opacity: 1;
     transition: opacity 0.2s ease;
 }
 
 .container.active .forms{
-    height: 600px;
+    height: 620px;
 }
 .container .form .title{
     position: relative;
@@ -190,4 +192,8 @@
 .form .login-signup{
     margin-top: 30px;
     text-align: center;
+}
+
+.form {
+    transition: height 0.3s ease-in-out;
 }

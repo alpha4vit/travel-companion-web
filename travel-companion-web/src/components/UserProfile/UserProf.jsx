@@ -9,6 +9,7 @@ import UserCardList from "../../pages/profile/UserCardList";
 import UserCardAbout from "../../pages/profile/UserCardAbout";
 import MyModal from "../UI/MyModal/MyModal";
 import ReviewCreationForm from "../../pages/profile/ReviewCreationForm";
+import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
 
 
 const UserProfile = () => {
@@ -17,9 +18,9 @@ const UserProfile = () => {
 
     return (
         <div>
-            <MyModal visible={isModalReviewVisible} setVisible={setModalReviewVisible}>
+            <FadeModalDialog open={isModalReviewVisible} setOpen={setModalReviewVisible}>
                 <ReviewCreationForm setModalReviewVisible={setModalReviewVisible}> </ReviewCreationForm>
-            </MyModal>
+            </FadeModalDialog>
             <div style={{marginTop: "70px", marginLeft:"30px", marginRight:"15px", width:"95vw"}}>
                 <div className="row">
                     <div className="col-xl-8">

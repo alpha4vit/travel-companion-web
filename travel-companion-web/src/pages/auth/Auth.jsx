@@ -1,8 +1,18 @@
 import React, {useState} from 'react';
 import "./Auth.css";
 import {AuthService} from "../../api/AuthService";
-import {Link} from "react-router-dom";
-
+import {Link, useNavigate} from "react-router-dom";
+import TransitionAlert from "../../components/UI/Alert/TransitionAlert";
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import IconButton from "@mui/material/IconButton";
 
 const Auth = ({onLogin, onVerification}) => {
 
@@ -15,6 +25,20 @@ const Auth = ({onLogin, onVerification}) => {
         email:"",
         password:""
     });
+
+
+    const navigateTo = useNavigate();
+
+    const [usernameIncorrectLogin, setUsernameIncorrectLogin] = useState(false);
+    const [passwordIncorrectLogin, setPasswordIncorrectLogin] = useState(false);
+
+    const [usernameIncorrectRegister, setUsernameIncorrectRegister] = useState(false);
+    const [emailIncorrectRegister, setEmailIncorrectRegister] = useState(false);
+    const [passwordIncorrectRegister, setPasswordIncorrectRegister] = useState(false);
+
+    const [errorUsernameRegisterMessage, setErrorUsernameRegisterMessage] = useState("");
+    const [errorEmailRegisterMessage, setErrorEmailRegisterMessage] = useState("");
+    const [errorPasswordRegisterMessage, setErrorPasswordRegisterMessage] = useState("");
 
 
     const showHidePassword = (target) => {
@@ -48,41 +72,82 @@ const Auth = ({onLogin, onVerification}) => {
     }
 
     const login = () => {
-        AuthService.login(loginData);
-        onLogin();
+        AuthService.login(loginData, setUsernameIncorrectLogin, setPasswordIncorrectLogin, onLogin, navigateTo);
     }
 
     const register = async () => {
-        await AuthService.register(registrationData, hideRegistrationForm);
+        var error = false;
+        if (registrationData.username === ""){
+            setErrorUsernameRegisterMessage("Имя пользователя не может быть пустым!");
+            setUsernameIncorrectRegister(true);
+            error = true;
+        }
+        if (registrationData.email === ""){
+            setErrorEmailRegisterMessage("Электронная почта не может быть пустой!");
+            setEmailIncorrectRegister(true);
+            error = true;
+        }
+        if (registrationData.password === ""){
+            setErrorPasswordRegisterMessage("Пароль не может быть пустым!");
+            setPasswordIncorrectRegister(true);
+            error = true;
+        }
+
+        if (!error) {
+            await AuthService.register(registrationData, hideRegistrationForm, handleRegisterUsernameError, handleRegisterEmailError, handleRegisterPasswordError, navigateTo);
+        }
+    }
+
+    const handleRegisterUsernameError = (message, value) => {
+        setUsernameIncorrectRegister(value);
+        setErrorUsernameRegisterMessage(message);
+    }
+
+    const handleRegisterEmailError = (message, value) => {
+        setEmailIncorrectRegister(value);
+        setErrorEmailRegisterMessage(message);
+    }
+
+    const handleRegisterPasswordError = (message, value) => {
+        setPasswordIncorrectRegister(value);
+        setErrorPasswordRegisterMessage(message);
     }
 
     return (
         <div className="auth_wrapper">
-            <div className="container">
+            <div className="container" >
                 <div className="forms">
                     <div className="form login">
                         <span className="title">Авторизация</span>
                         <form method="post">
-                            <div className="input-field">
-                                <input onChange={e => setLoginData({...loginData, username:e.target.value})} id="username" name="username" type="text" placeholder="Введите имя пользователя"
-                                       required/>
-                                <i className="uil uil-envelope icon"></i>
+                            <div className="input-field" >
+                                <input onChange={e => {
+                                    setLoginData({...loginData, username: e.target.value});
+                                    setUsernameIncorrectLogin(false);
+                                }} id="username" name="username" type="text" placeholder="Введите имя пользователя"
+                                       required style={usernameIncorrectLogin ? {borderBottomColor: '#c7452e'} : {borderBottomColor: '#5cb85c'}}/>
+                                <i className="uil uil-envelope icon" style={usernameIncorrectLogin ? {color: '#c7452e'} : {color: '#5cb85c'}}></i>
                             </div>
-                            <div className="input-field">
-                                <input onChange={e => setLoginData({...loginData, password:e.target.value})} name="password" type="password" className="password pwLog" placeholder="Введите пароль"
-                                       required/>
-                                <i className="uil uil-lock icon"></i>
-                                <i onClick={(e) => showHidePassword(e.target)} className="uil uil-eye-slash showHidePw showHidePwLog"></i>
+                            <TransitionAlert message="Имя пользователя не найдено!" open={usernameIncorrectLogin} setOpen={setUsernameIncorrectLogin}  />
+                            <div className="input-field" >
+                                <input onChange={e => {
+                                    setLoginData({...loginData, password: e.target.value});
+                                    setPasswordIncorrectLogin(false);
+                                }
+                                } name="password" type="password" className="password pwLog" placeholder="Введите пароль"
+                                       required  style={passwordIncorrectLogin ? {borderBottomColor: '#c7452e'} : {borderBottomColor: '#5cb85c'}}/>
+                                <i className="uil uil-lock icon" style={passwordIncorrectLogin ? {color: '#c7452e'} : {color: '#5cb85c'}}></i>
+                                <i onClick={(e) => showHidePassword(e.target)} className="uil uil-eye-slash showHidePw showHidePwLog" style={passwordIncorrectLogin ? {color: '#c7452e'} : {color: '#5cb85c'}}></i>
                             </div>
-                            <span className="text">
-
-                            </span>
+                            <TransitionAlert message="Введен неверный пароль!" open={passwordIncorrectLogin} setOpen={setPasswordIncorrectLogin}  />
                             <div className="checkbox-text">
                                 <div className="checkbox-content">
                                     <input type="checkbox" id="logCheck"/>
                                     <label htmlFor="logCheck" className="text">Запомнить меня</label>
                                 </div>
-                                <a style={{cursor:"pointer"}} className="text">Забыли пароль?</a>
+                                <Link to="/auth/reset">
+                                 <a style={{cursor:"pointer"}} className="text">Забыли пароль?</a>
+                                </Link>
                             </div>
 
                             <div className="input-field button">
@@ -102,29 +167,54 @@ const Auth = ({onLogin, onVerification}) => {
 
                         <form>
                             <div className="input-field">
-                                <input onChange={e => setRegistrationData({...registrationData, username:e.target.value})} type="text" placeholder="Введите имя пользователя" required/>
-                                <i className="uil uil-user"></i>
+                                <input onChange={e => {
+                                    setRegistrationData({...registrationData, username: e.target.value});
+                                    setUsernameIncorrectRegister(false);
+                                }} type="text" placeholder="Введите имя пользователя" required
+                                       style={usernameIncorrectRegister ? {borderBottomColor: '#c7452e'} : {borderBottomColor: '#5cb85c'}}
+                                />
+                                <i className="uil uil-user"
+                                   style={usernameIncorrectRegister ? {color: '#c7452e'} : {color: '#5cb85c'}}
+                                ></i>
                             </div>
+                            <TransitionAlert message={errorUsernameRegisterMessage} open={usernameIncorrectRegister} setOpen={setUsernameIncorrectRegister}  />
                             <div className="input-field">
-                                <input onChange={e => setRegistrationData({...registrationData, email:e.target.value})} type="text" placeholder="Введите электронную почту" required/>
-                                <i className="uil uil-envelope icon"></i>
+                                <input onChange={e => {
+                                    setRegistrationData({...registrationData, email: e.target.value});
+                                    setEmailIncorrectRegister(false);
+                                }} type="text" placeholder="Введите электронную почту" required
+                                       style={emailIncorrectRegister ? {borderBottomColor: '#c7452e'} : {borderBottomColor: '#5cb85c'}}
+                                />
+                                <i className="uil uil-envelope icon"
+                                   style={emailIncorrectRegister ? {color: '#c7452e'} : {color: '#5cb85c'}}
+                                ></i>
                             </div>
+                            <TransitionAlert message={errorEmailRegisterMessage} open={emailIncorrectRegister} setOpen={setEmailIncorrectRegister}  />
                             <div className="input-field">
-                                <input onChange={e => setRegistrationData({...registrationData, password:e.target.value})} type="password" className="password pwReg"
-                                       placeholder="Введите пароль" required/>
-                                <i className="uil uil-lock icon"></i>
-                                <i onClick={(e) => showHidePassword(e.target)}  className="uil uil-eye-slash showHidePw showHidePwReg"></i>
+                                <input onChange={e => {
+                                    setRegistrationData({...registrationData, password: e.target.value});
+                                    setPasswordIncorrectRegister(false);
+                                }} type="password" className="password pwReg"
+                                       placeholder="Введите пароль" required
+                                       style={passwordIncorrectRegister ? {borderBottomColor: '#c7452e'} : {borderBottomColor: '#5cb85c'}}
+                                />
+                                <i className="uil uil-lock icon"
+                                   style={passwordIncorrectRegister ? {color: '#c7452e'} : {color: '#5cb85c'}}
+                                ></i>
+                                <i onClick={(e) => showHidePassword(e.target)}  className="uil uil-eye-slash showHidePw showHidePwReg"
+                                   style={passwordIncorrectRegister ? {color: '#c7452e'} : {color: '#5cb85c'}}
+                                ></i>
                             </div>
+                            <TransitionAlert message={errorPasswordRegisterMessage} open={passwordIncorrectRegister} setOpen={setPasswordIncorrectRegister}  />
                             <div className="checkbox-text">
                                 <div className="checkbox-content">
                                     <input type="checkbox" id="termCon"/>
                                     <label htmlFor="termCon" className="text">Я принимаю условия соглашения</label>
                                 </div>
                             </div>
-
-                            <Link to={"/auth/confirm"}><div className="input-field button">
+                            <div className="input-field button">
                                 <input onClick={register} className="button-text" value="Sign up"/>
-                            </div></Link>
+                            </div>
                         </form>
 
                         <div className="login-signup">

@@ -10,6 +10,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Button from '@mui/material/Button';
+import TransitionAlert from "../UI/Alert/TransitionAlert";
 
 const PostCreationForm = ({setVisible, posts, setPosts}) => {
 
@@ -99,8 +100,6 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
                     }}
                 />
             </div>
-
-
             <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Тип объявления</InputLabel>
                 <Select

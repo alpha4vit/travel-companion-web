@@ -9,13 +9,6 @@ const Review = ({review, showDivider}) => {
 
     const [avatar, setAvatar] = useState("");
 
-    const generateStars = () => {
-        const starsArray = [];
-        for (let i = 0; i < review.stars; i++) {
-            starsArray.push(<span key={i}><StarIcon style={{color: '#fccf03'}} /></span>);
-        }
-        return starsArray;
-    };
 
     useEffect(() => {
         const fetchAvatar = async () => {
@@ -38,7 +31,7 @@ const Review = ({review, showDivider}) => {
                             name="text-feedback"
                             value={review.stars}
                             readOnly
-                            precision={0.5}
+                            precision={0.1}
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </div>

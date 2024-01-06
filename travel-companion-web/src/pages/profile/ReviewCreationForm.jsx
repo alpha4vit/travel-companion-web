@@ -7,7 +7,8 @@ import {useParams} from "react-router-dom";
 import {ReviewService} from "../../api/ReviewService";
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import {Box} from "@mui/material";
+import {Box, TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const ReviewCreationForm = ({setModalReviewVisible}) => {
 
@@ -40,17 +41,32 @@ const ReviewCreationForm = ({setModalReviewVisible}) => {
 
     return (
         <form>
-            <MyInput onChange={e => setReview({...review, title: e.target.value})} value={review.title}
-                     type="text" placeholder="Заголовок"/>
-            <MyInput onChange={e => setReview({...review, description: e.target.value})} value={review.email} type="text"
-                     placeholder="Электронная почта"/>
-
-            {/*<StarRating rating={review.stars} setRating={(e) => setReview({...review, stars: e})} />*/}
+            <TextField
+                fullWidth
+                id="fee"
+                onChange={e => setReview({...review, title: e.target.value})} value={review.title}
+                label="Заголовок"
+                variant="outlined"
+                sx={{
+                    marginBottom: '20px'
+                }}
+            />
+            <TextField
+                fullWidth
+                id="fee"
+                onChange={e => setReview({...review, description: e.target.value})} value={review.email}
+                label="Электронная почта"
+                variant="outlined"
+                sx={{
+                    marginBottom: '20px'
+                }}
+            />
             <Box
                 sx={{
-                    width: 200,
+                    width: 400,
                     display: 'flex',
                     alignItems: 'center',
+                    marginBottom:'20px'
                 }}
             >
                 <Rating
@@ -70,7 +86,7 @@ const ReviewCreationForm = ({setModalReviewVisible}) => {
                     <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : review.stars]}</Box>
                 )}
             </Box>
-            <MyButton type="button" onClick={sendReview}>Сохранить изменения</MyButton>
+            <Button fullWidth variant="contained" type="button" onClick={sendReview}>Сохранить изменения</Button>
         </form>
     );
 };

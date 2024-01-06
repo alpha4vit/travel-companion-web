@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import Review from "../../components/Profile/Review";
 import MyButton from "../../components/UI/button/MyButton";
 import MyModal from "../../components/UI/MyModal/MyModal";
+import Button from "@mui/material/Button";
 
 const UserCardAbout = ({isModalReviewVisible, setModalReviewVisible}) => {
 
@@ -37,9 +38,9 @@ const UserCardAbout = ({isModalReviewVisible, setModalReviewVisible}) => {
     return (
             <div className="col-xl-4">
                 <div style={{marginBottom: 10}}>
-                    <button onClick={() => {
+                    <Button variant="contained" onClick={() => {
                         setModalReviewVisible(true)
-                    }}>Оставить отзыв!</button>
+                    }}>Оставить отзыв!</Button>
                 </div>
                 <div className="card reviews-container">
                     <div className="review-list">
