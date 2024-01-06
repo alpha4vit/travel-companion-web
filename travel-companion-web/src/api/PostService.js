@@ -18,10 +18,28 @@ export class PostService{
         return response;
     }
 
-    static async createPost(post){
-        const user_id = JSON.parse(localStorage.getItem("authenticatedUser")).id;
-        const response = await axios.post(this.url+`/${user_id}/create`, post);
-        return this.convertDatePost(response.data);
+    static async createPost(post, handleTitleError, handleDescError, handleFeeError, handleDateError, success){
+        try {
+            const user_id = JSON.parse(localStorage.getItem("authenticatedUser")).id;
+            const response = await axios.post(this.url + `/${user_id}/create`, post);
+            if (response.status === 200){
+                success(this.convertDatePost(response.data));
+            }
+        }
+        catch (error){
+            if (error.response && error.response.status === 400){
+                const errors = error.response.data.errors;
+                if (errors.title)
+                    handleTitleError(errors.title);
+                if (errors.description)
+                    handleDescError(errors.description);
+                if (errors.fee)
+                    handleFeeError(errors.fee);
+                if (errors.date)
+                    handleDateError(errors.date)
+            }
+        }
+
     }
 
     static async getAllByUserId(userId){
