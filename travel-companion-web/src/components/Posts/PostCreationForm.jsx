@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import MyButton from "../UI/button/MyButton";
 import {PostService} from "../../api/PostService";
 import classes from "./PostCreationForm.module.css";
-import {FilledInput, TextField} from "@mui/material";
-import {DatePicker, DesktopDatePicker} from "@mui/x-date-pickers";
+import {TextField} from "@mui/material";
+import {DatePicker} from "@mui/x-date-pickers";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Button from '@mui/material/Button';
 import TransitionAlert from "../UI/Alert/TransitionAlert";
-import {FormHelperText} from "@mui/joy";
-import Input from "@mui/material/Input";
+import {message} from "antd";
 
 const PostCreationForm = ({setVisible, posts, setPosts}) => {
 
@@ -30,14 +28,21 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
     const [feeErrorMessage, setFeeErrorMessage] = useState("");
     const [dateErrorMessage, setDateErrorMessage] = useState("");
 
-    const createPost = async () => {
-        if (!dateError) {
-            await PostService.createPost(post, handleTitleError, handleDescError, handleFeeError, handleDateError, (created) => {
-                setPosts([...posts, created]);
-                setVisible(false);
-            });
-        }
+    const [messageApi, contextHolder] = message.useMessage();
 
+    const successMessage = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Объявление успешно опубликовано!',
+        });
+    };
+
+    const createPost = async () => {
+        await PostService.createPost(post, handleTitleError, handleDescError, handleFeeError, handleDateError, (created) => {
+            setPosts([...posts, created]);
+            setVisible(false);
+            successMessage();
+        });
     }
 
     const updateStartDate = (date, setDate, date_type) => {
@@ -70,6 +75,7 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
 
     return (
         <form>
+            {contextHolder}
             <div className={classes.formGroup}>
                 <TextField
                     error={titleError}
@@ -118,9 +124,6 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
             <div className={classes.formGroup} style={{ display: 'flex', gap: '8px' }}>
                 <DatePicker
                     defaultValue={new Date()}
-                    onError={() => {
-                        setDateError(true)
-                    }}
                     disablePast
                     label="Дата отправления"
                     selected={dateThere}
@@ -143,7 +146,6 @@ const PostCreationForm = ({setVisible, posts, setPosts}) => {
                 />
                 <DatePicker
                     defaultValue={new Date()}
-                    onError={() => setDateError(true)}
                     disablePast
                     label="Дата прибытия"
                     format="dd/MM/yyyy"

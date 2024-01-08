@@ -19,7 +19,7 @@ export default function InputFileUpload({text, callback}) {
     return (
         <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
             {text}
-            <VisuallyHiddenInput onChange={(e) => callback(e)} type="file" />
+            <VisuallyHiddenInput onInput={(e) => callback(e)} type="file" />
         </Button>
     );
 }

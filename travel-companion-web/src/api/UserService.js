@@ -9,15 +9,38 @@ export class UserService {
         return response.data;
     }
 
-    static async updateUser(user) {
-        const response = await axios.patch(this.url + user.id,
-            user,
-            {
-                headers: {
-                    "Content-Type": "application/json"
+    static async updateUser(user,
+                            success,
+                            handleUsernameError,
+                            handleEmailError,
+                            handlePhoneNumberError,
+                            handleBioError) {
+
+        try {
+            const response = await axios.patch(this.url + user.id,
+                user,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 }
+            );
+            if (response.status === 200) {
+                    success();
             }
-        );
-        console.log(response)
+        }
+        catch (error){
+            if (error.response && error.response.status === 400){
+                const errors = error.response.data.errors;
+                if (errors.username)
+                    handleUsernameError(errors.username, true);
+                if (errors.email)
+                    handleEmailError(errors.email, true);
+                if (errors.phoneNumber)
+                    handlePhoneNumberError(errors.phoneNumber, true);
+                if (errors.bio)
+                    handleBioError(errors.bio, true)
+            }
+        }
     }
 }
