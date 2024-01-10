@@ -1,32 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { Map, RouteButton, YMaps, ZoomControl } from "@pbe/react-yandex-maps";
+import { Map, YMaps, ZoomControl, Button } from "@pbe/react-yandex-maps";
 
 const mapState = { center: [53.489453, 29.341762], zoom: 7 };
 
-const MyMap = () => {
+const MyMap = ({ width, height, callback}) => {
     const [ymaps, setYmaps] = useState(null);
-    const routes = useRef(null);
+    const routePanelRef = useRef(null);
+
 
     const getRoute = ref => {
         if (ymaps) {
-            const multiRoute = new ymaps.multiRouter.MultiRoute(
-                {
-                    referencePoints: [[53.489453, 29.341762], [53.902735, 27.555696]],
-                    params: {
-                        results: 2
-                    }
-                },
-                {
-                    boundsAutoApply: true,
-                    routeActiveStrokeWidth: 6,
-                    routeActiveStrokeColor: "#fa6600"
-                }
-            );
-
-            routes.current = multiRoute;
-            ref.geoObjects.add(multiRoute);
-
-            // Устанавливаем targetPoint для RouteButton
             const routePanel = new ymaps.control.RoutePanel({
                 options: {
                     size: 'small',
@@ -37,20 +20,42 @@ const MyMap = () => {
                 }
             });
 
-            routePanel.routePanel.options.set('types', { masstransit: true, pedestrian: true });
+            routePanel.routePanel.options.set('types', { auto: true, pedestrian: true,  masstransit:true});
 
             routePanel.routePanel.state.set({
-                type: 'masstransit',
+                type: 'driving',
                 fromEnabled: true,
                 from: [53.489453, 29.341762],
                 to: [53.902735, 27.555696],
                 toEnabled: true,
             });
 
-
             ref.controls.add(routePanel);
+            routePanelRef.current = routePanel;
         }
     };
+
+    const getCurrentRoute = () => {
+        if (routePanelRef.current) {
+            const routePanel = routePanelRef.current;
+            const route = routePanel.routePanel.getRoute();
+            const wayPoints = route.getWayPoints();
+            const startPoint = getPointInfo(wayPoints.get(0));
+            const endPoint = getPointInfo(wayPoints.get(wayPoints.getLength() - 1));
+            return {startPoint: startPoint, endPoint: endPoint}
+        }
+    };
+
+    const getPointInfo = point => {
+        const coordinates = point.geometry.getCoordinates();
+        const address = point.properties.get("name");
+        return { coordinates, address };
+    };
+
+    const handleSaveRoute = () => {
+        const route = getCurrentRoute();
+        callback(route);
+    }
 
     return (
         <div style={{ marginTop: '100px' }} className="App">
@@ -60,10 +65,16 @@ const MyMap = () => {
                     onLoad={ymaps => setYmaps(ymaps)}
                     state={mapState}
                     instanceRef={ref => ref && getRoute(ref)}
-                    width='1000px'
-                    height='500px'
+                    width={width}
+                    height={height}
                 >
                     <ZoomControl />
+                    <Button
+                        options={{ float: 'right', floatIndex: 100, position: { top: '180px', right: '20px' }, autoSizeMode: 'auto',
+                            maxWidth: '200px' }}
+                        data={{ content: "Сохранить маршрут!" }}
+                        onClick={handleSaveRoute}
+                    />
                 </Map>
             </YMaps>
         </div>

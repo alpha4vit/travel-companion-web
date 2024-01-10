@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="auth completed">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3a9b8aeb-a686-4599-bafc-bc0591f854f3/storage_v2/_src_/database/travel-companion-search.3AUWIA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="64af1a9d-1691-42c5-8211-3432c9a48f81" name="Changes" comment="map ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/ControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/TravelCompanionSearch/src/main/java/by/gurinovich/travelcompanionsearch/controller/ControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/UI/PostCreationButton/PostCreationButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/PostCreationButton/PostCreationButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/Posts/PostCreationForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/Posts/PostCreationForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/UI/MyModal/FadeModalDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/UI/MyModal/FadeModalDialog.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel-companion-web/src/components/map/MyMap.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/components/map/MyMap.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/travel-companion-web/src/pages/posts/Posts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel-companion-web/src/pages/posts/Posts.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +147,8 @@
       <workItem from="1703002012527" duration="59000" />
       <workItem from="1703064066675" duration="942000" />
       <workItem from="1704892054526" duration="3949000" />
-      <workItem from="1704896053124" duration="312000" />
+      <workItem from="1704896053124" duration="380000" />
+      <workItem from="1704919451662" duration="8013000" />
     </task>
     <task id="LOCAL-00001" summary="search/filter bar">
       <created>1702234872650</created>
@@ -239,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702895085290</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="map ready">
+      <created>1704896415188</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704896415188</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +256,7 @@
     <MESSAGE value="auth service fix" />
     <MESSAGE value="auth completed" />
     <MESSAGE value="post creation complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="post creation complete" />
+    <MESSAGE value="map ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="map ready" />
   </component>
 </project>

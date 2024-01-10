@@ -15,6 +15,7 @@ import {Alert, Avatar, Button, Card, message, Skeleton} from "antd";
 import Meta from "antd/es/card/Meta";
 import classes from "./Posts.module.css";
 import PopUpAlert from "../../components/UI/Alert/PopUpAlert";
+import MyMap from "../../components/map/MyMap";
 const Posts = ({isLoggedIn, isEmailVerified}) => {
 
     const [posts, setPosts] = useState([]);
@@ -34,7 +35,6 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
         const totalCount = response.data.headers.total_count;
         setTotalPages(getPagesCount(totalCount, limit));
     });
-
 
 
 
@@ -63,18 +63,24 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
         });
     };
 
+    const [isMapOpen, setIsMapOpen] = useState(false);
+    const [route, setRoute] = useState({});
 
     return (
         <div>
             {contextHolder}
+
             {isResponseVisible &&
                 <FadeModalDialog title="Откликнуться на объявление" open={isResponseVisible} setOpen={setResponseVisible}>
                     <ResponseForm callback={() => successResponseMessage()} setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} />
                 </FadeModalDialog>
             }
             {isLoggedIn && isEmailVerified &&
-                <FadeModalDialog title="Создание объявления" open={isVisible} setOpen={setVisible}>
-                    <PostCreationForm  posts={posts} setPosts={setPosts} setVisible={setVisible}/>
+                <FadeModalDialog additionalComponent={isMapOpen && <MyMap width='100vw' height='100vh' callback={(el) => {
+                    setIsMapOpen(false);
+                    setRoute(el);
+                }}></MyMap>} title="Создание объявления" open={isVisible} setOpen={setVisible}>
+                    <PostCreationForm isMapOpen={isMapOpen} setIsMapOpen={setIsMapOpen}  posts={posts} setPosts={setPosts} setVisible={setVisible} route={route}/>
                 </FadeModalDialog>
             }
             <SearchMenu

@@ -5,7 +5,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 
-export default function FadeModalDialog({children, open, setOpen, title}) {
+export default function FadeModalDialog({children, open, setOpen, title, additionalComponent}) {
 
 
     return (
@@ -50,6 +50,19 @@ export default function FadeModalDialog({children, open, setOpen, title}) {
                                 padding: '20px',
                             }}>
                                 {children}
+                                {additionalComponent && (
+                                    <div
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            zIndex: 1000000, // Устанавливаем высокий z-index, чтобы ваш компонент был поверх модального окна
+                                        }}
+                                    >
+                                        {additionalComponent}
+                                    </div>
+                                )}
                             </DialogContent>
                         </ModalDialog>
                     </Modal>
