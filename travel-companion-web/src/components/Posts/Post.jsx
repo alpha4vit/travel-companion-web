@@ -4,6 +4,7 @@ import {PostService} from "../../api/PostService"; // Подключите ва�
 import classes from "./Post.module.css";
 import MyModal from "../UI/MyModal/MyModal";
 import ResponseForm from "./ResponseForm";
+import {message} from "antd";
 
 const Post = () => {
 
@@ -24,6 +25,7 @@ const Post = () => {
     }, [])
 
 
+
     const respond = () => {
         setResponsedPostId(post.id);
         setResponseVisible(true);
@@ -34,7 +36,9 @@ const Post = () => {
     }
 
     return (
+        <>
         <div className={classes.postPage}>
+
             {isResponseVisible &&
                 <MyModal visible={isResponseVisible} setVisible={setResponseVisible}>
                     <ResponseForm setResponseVisible={setResponseVisible} responsedPostId={responsedPostId} callback={() => console.log(10)}/>
@@ -58,6 +62,7 @@ const Post = () => {
                 <button onClick={() => respond()} className={classes.responseButton__btn}>Откликнуться</button>
             </div>
         </div>
+            </>
     );
 };
 

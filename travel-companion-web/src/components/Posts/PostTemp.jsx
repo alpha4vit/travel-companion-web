@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
+import {message} from "antd";
 
 const PostTemp = () => {
 
@@ -22,6 +23,15 @@ const PostTemp = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isResponseVisible, setResponseVisible] = useState(false);
+
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const successResponseMessage = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Вы успешно откликнулись на объявление!'
+        });
+    };
 
     useEffect(() => {
         const fetch = async () => {
@@ -49,10 +59,14 @@ const PostTemp = () => {
 
     return (
         <div>
+            {contextHolder}
             {isResponseVisible &&
                 <FadeModalDialog title="Откликнуться на объявление" open={isResponseVisible}
                                  setOpen={setResponseVisible}>
-                    <ResponseForm callback={() => setPost({...post, responses_count: post.responses_count + 1})}
+                    <ResponseForm callback={() => {
+                        setPost({...post, responses_count: post.responses_count + 1});
+                        successResponseMessage();
+                    }}
                                   setResponseVisible={setResponseVisible} responsedPostId={post.id}/>
                 </FadeModalDialog>
             }

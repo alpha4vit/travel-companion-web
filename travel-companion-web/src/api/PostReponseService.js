@@ -9,8 +9,23 @@ export class PostReponseService{
         return response.data;
     }
 
-    static async respond(response, userId, postId){
-        await axios.post(this.url + `/users/${userId}/${postId}`, response);
+    static async respond(responseBody, userId, postId, handleContactError, handleCommentError, success){
+        try {
+
+            const response = await axios.post(this.url + `/users/${userId}/${postId}`, responseBody);
+            if (response.status === 200){
+                success();
+            }
+        }
+        catch (error){
+            if (error.response && error.response.status === 400){
+                const errors = error.response.data.errors;
+                if (errors.contact)
+                    handleContactError(errors.contact);
+                if (errors.comment)
+                    handleCommentError(errors.comment);
+            }
+        }
     }
 
 }

@@ -1,34 +1,65 @@
-import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import classes from "./Post.module.css";
-import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
-import ResponseForm from "./ResponseForm";
+import {Card, Skeleton, Divider, Typography} from "antd";
+import Meta from "antd/es/card/Meta";
 import Button from "@mui/material/Button";
+import {ImageService} from "../../api/ImageService";
+import {Avatar} from "@mui/joy";
 
-const PostListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified}) => {
-    const user = JSON.parse(localStorage.getItem("authenticatedUser"));const [modal, setModal] = useState(false);
+const PostListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified, loading}) => {
+    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
 
-    const respond = () => {
+    const [avatar, setAvatar] = useState("");
+
+
+    useEffect(() => {
+        const fetchAvatar = async () => {
+            const response = await ImageService.fetchImage(post.user.avatar);
+            setAvatar(response);
+        }
+        fetchAvatar();
+    }, [])
+
+    const navigateTo = useNavigate();
+
+    const respond = (e) => {
+        e.stopPropagation();
         setResponsedPostId(post.id);
         setResponseVisible(true);
     }
 
     return (
         <div key={post.id} className={classes.event}>
-
-            <Link to={`/posts/${post.id}`} state={{isEmailVerified: isEmailVerified, isLoggedIn: isLoggedIn}} className={classes.link}>
-                <div className={classes.event__content}>
-                    <h2 className={classes.event__title}>{post.title}</h2>
-                    <p className={classes.event__description}>{post.description}</p>
-                    <time className={classes.event__date}>{'Туда-обратно: ' + post.date_there + ' - '+ post.date_back}</time>
-                    <p className={classes.event__fee}>{'Оплата: ' + post.fee}</p>
-                </div>
-            </Link>
-            {isLoggedIn && isEmailVerified &&
-                <div className={classes.responseButton}>
-                    <Button onClick={() => respond()} variant="contained" >Откликнуться</Button>
-                </div>
-            }
+                <Card onClick={() => navigateTo(`/posts/${post.id}`, {state:{isEmailVerified: isEmailVerified, isLoggedIn: isLoggedIn}})}
+                    hoverable
+                    style={{
+                        width: '50vw',
+                        marginTop: 16,
+                    }}
+                    actions={isLoggedIn && [
+                        <Button  variant="contained" type="button" onClick={(e) => respond(e)}>
+                            Откликнуться!
+                        </Button>
+                    ]}
+                >
+                    <Skeleton loading={loading} avatar active>
+                        <Meta
+                            avatar={
+                                <Avatar src={avatar} />
+                            }
+                            title={post.user.username}
+                        />
+                        <Divider>{post.post_type === 'DRIVER' ? 'Ищу попутчика' : 'Ищу попутку'}</Divider>
+                        <div style={{marginTop:'10px'}}>
+                            <Typography><i>Заголовок:</i> {post.title}</Typography>
+                            <Typography><i>Дата отправления:</i> {post.date_there}</Typography>
+                            <Typography><i>Дата прибытия:</i> {post.date_back}</Typography>
+                            <Typography><i>Описание:</i> {post.description}</Typography>
+                            <Typography><i>Стоимость:</i> {post.fee}</Typography>
+                        </div>
+                    </Skeleton>
+                </Card>
         </div>
     );
 };

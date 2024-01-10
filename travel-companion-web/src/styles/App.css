@@ -22,3 +22,13 @@ body {
 .reviews-list {
   padding: 10px; /* Добавьте отступы по желанию */
 }
+
+#map {
+  width: 520px;
+  height: 320px;
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  background-color:#ccc;
+  overflow:hidden;
+}

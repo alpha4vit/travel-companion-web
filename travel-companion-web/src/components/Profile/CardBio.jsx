@@ -6,6 +6,7 @@ import {ImageService} from "../../api/ImageService";
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
+import {Avatar} from "@mui/joy";
 
 const CardBio = ({user, setUser}) => {
 

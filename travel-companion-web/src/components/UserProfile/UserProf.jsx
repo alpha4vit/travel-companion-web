@@ -17,11 +17,10 @@ const UserProfile = () => {
     const [isModalReviewVisible, setModalReviewVisible] = useState(false);
 
     return (
-        <div>
-            <FadeModalDialog open={isModalReviewVisible} setOpen={setModalReviewVisible}>
-                <ReviewCreationForm setModalReviewVisible={setModalReviewVisible}> </ReviewCreationForm>
-            </FadeModalDialog>
-            <div style={{marginTop: "70px", marginLeft:"30px", marginRight:"15px", width:"95vw"}}>
+            <div style={{marginTop:'70px', marginLeft:"30px", marginRight:"15px", width:"95vw"}}>
+                <FadeModalDialog open={isModalReviewVisible} setOpen={setModalReviewVisible}>
+                    <ReviewCreationForm setModalReviewVisible={setModalReviewVisible}> </ReviewCreationForm>
+                </FadeModalDialog>
                 <div className="row">
                     <div className="col-xl-8">
                         <UserCardBio />
@@ -30,7 +29,6 @@ const UserProfile = () => {
                     <UserCardAbout isModalReviewVisible={isModalReviewVisible} setModalReviewVisible={setModalReviewVisible} />
                 </div>
             </div>
-        </div>
     );
 }
 

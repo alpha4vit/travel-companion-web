@@ -1,21 +1,10 @@
-.event {
-    width: 70%;
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    backface-visibility: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
 
-.event:hover {
-    transform: scale(1.005);
-}
 
 .list {
-    flex: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 15px;
     margin-top: 40px;
 }

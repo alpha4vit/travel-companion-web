@@ -4,7 +4,7 @@ import PostCardItem from "./PostCardItem";
 import {useFetching} from "../../hooks/useFetching";
 import {getPagesCount} from "../../utils/pages";
 import {UserService} from "../../api/UserService";
-import posts from "../../pages/Posts";
+import posts from "../../pages/posts/Posts";
 import {PostReponseService} from "../../api/PostReponseService";
 import ResponseCardItem from "./ResponseCardItem";
 import MyModal from "../UI/MyModal/MyModal";

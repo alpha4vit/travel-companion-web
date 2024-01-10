@@ -31,8 +31,9 @@ export class PostService{
                 const errors = error.response.data.errors;
                 if (errors.title)
                     handleTitleError(errors.title);
-                if (errors.description)
+                if (errors.description) {
                     handleDescError(errors.description);
+                }
                 if (errors.fee)
                     handleFeeError(errors.fee);
                 if (errors.date)

@@ -5,13 +5,14 @@ import {PostService} from "../../api/PostService";
 import {PostReponseService} from "../../api/PostReponseService";
 import {ReviewService} from "../../api/ReviewService";
 import Review from "./Review";
+import {Typography} from "antd";
 const CardAbout = ({user}) => {
 
     const [reviews, setReviews] = useState([]);
 
     const [fetchReviews, isReviewsLoading, reviewsError] = useFetching(async () => {
         const response = await ReviewService.getAllByUserId(user.id);
-        setReviews(response);
+        setReviews(response); 
     });
 
     useEffect(() => {
