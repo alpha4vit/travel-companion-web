@@ -4,7 +4,7 @@ import {PostService} from "../../api/PostService"; // Подключите ва�
 import classes from "./Post.module.css";
 import MyModal from "../UI/MyModal/MyModal";
 import ResponseForm from "./ResponseForm";
-import {message} from "antd";
+import {Col, Row, Typography} from "antd";
 
 const Post = () => {
 
@@ -45,11 +45,20 @@ const Post = () => {
                 </MyModal>
             }
             <div>{post.title}</div>
-            <div className={classes.postInfo}>
-                <h2 className={classes.postTitle}>{post.title}</h2>
-                <p className={classes.postDescription}>{post.description}</p>
-                <p className={classes.postDate}>{`Туда-обратно: ${post.date_there} - ${post.date_back}`}</p>
-                <p className={classes.postFee}>{`Оплата: ${post.fee}`}</p>
+            <div style={{ marginTop: '10px' }}>
+                <Row gutter={[16, 16]}>
+                    <Col xs={24} md={12}>
+                        <Typography><i>Город отправления:</i> {post.route.departure.text}</Typography>
+                        <Typography><i>Город прибытия:</i> {post.route.destination.text}</Typography>
+                    </Col>
+                    <Col xs={24} md={12}>
+                        <Typography><i>Дата отправления:</i> {post.date_there}</Typography>
+                        <Typography><i>Дата прибытия:</i> {post.date_back}</Typography>
+
+                    </Col>
+                </Row>
+                <Typography><i>Описание:</i> {post.description}</Typography>
+                <Typography><i>Стоимость:</i> {post.fee}</Typography>
             </div>
 
             <div className={classes.userInfo}>

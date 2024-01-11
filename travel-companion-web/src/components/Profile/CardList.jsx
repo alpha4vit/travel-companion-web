@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import {PostService} from "../../api/PostService";
 import PostCardItem from "./PostCardItem";
 import {useFetching} from "../../hooks/useFetching";
 import {getPagesCount} from "../../utils/pages";
 import {UserService} from "../../api/UserService";
 import posts from "../../pages/posts/Posts";
-import {PostReponseService} from "../../api/PostReponseService";
+import {PostResponseService} from "../../api/PostResponseService";
 import ResponseCardItem from "./ResponseCardItem";
 import MyModal from "../UI/MyModal/MyModal";
 import DeleteConfirmForm from "./DeleteConfirmForm";
 import PostCreationForm from "../Posts/PostCreationForm";
 import PostEditForm from "./PostEditForm";
+import {Button, List, message, Modal} from "antd";
+import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
+import MyMap from "../map/MyMap";
+
 
 const CardList = ({user}) => {
 
@@ -31,23 +35,30 @@ const CardList = ({user}) => {
                 break;
             }
             case "responses":{
-                response = await PostReponseService.getAllByUserId(user.id);
+                response = await PostResponseService.getAllByUserId(user.id);
                 break;
             }
         }
         setList(response);
     });
 
-    const confirmDelete = () => {
+    const confirmPostDelete = () => {
         PostService.deleteById(postForDelete.id);
         fetchList();
         setDeletePostConfirmVisible(false);
     }
 
-    const editPost = () => {
-        PostService.update(postForEdit);
+    const confirmResponseDelete = () => {
+        PostResponseService.deleteById(postForDelete.id);
         fetchList();
-        setPostEditVisible(false);
+        setDeleteResponseConfirmVisible(false);
+    }
+
+    const editPost = (post, handleTitleError, handleDescError, handleFeeError, handleDateError) => {
+        PostService.update(post, handleTitleError, handleDescError, handleFeeError, handleDateError, () => {
+            fetchList();
+            setPostEditVisible(false);
+        });
     }
 
     useEffect(() => {
@@ -71,23 +82,44 @@ const CardList = ({user}) => {
         setListType(type);
     };
 
+    const [isMapOpen, setIsMapOpen] = useState(false);
+    const [route, setRoute] = useState({});
+
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const successMessage = (message) => {
+        messageApi.open({
+            type: 'success',
+            content: message
+        });
+    };
+
     return (
         <div>
+            {contextHolder}
             {deleteResponseConfirmVisible &&
-                <MyModal visible={deleteResponseConfirmVisible} setVisible={setDeleteResponseConfirmVisible}>
-                    <DeleteConfirmForm fetchList={fetchList} setDeleteResponseConfirmVisible={setDeleteResponseConfirmVisible} postForDelete={responseForDelete}/>
-                </MyModal>
+                <Modal  okType='danger' zIndex='10000' title="Вы дейстивтельно хотите удалить данный отклик?" centered open={deleteResponseConfirmVisible} onOk={() => {
+                    setDeleteResponseConfirmVisible(false);
+                    confirmResponseDelete();
+                    successMessage("Отклик успешно удален!")
+                }} onCancel={() => setDeleteResponseConfirmVisible(false)}>
+                </Modal>
             }
             {deletePostConfirmVisible &&
-                <MyModal visible={deletePostConfirmVisible} setVisible={setDeletePostConfirmVisible}>
-                    <DeleteConfirmForm confirmDelete={confirmDelete} setDeletePostConfirmVisible={setDeletePostConfirmVisible} postForDelete={postForDelete}/>
-                </MyModal>
+                <Modal  okType='danger' zIndex='10000' title="Вы дейстивтельно хотите удалить данную публикацию?" centered open={deletePostConfirmVisible} onOk={() => {
+                    setDeletePostConfirmVisible(false);
+                    confirmPostDelete();
+                    successMessage("Публикация успешно удалена!")
+                }} onCancel={() => setDeletePostConfirmVisible(false)}>
+                </Modal>
             }
             {postEditVisible &&
-
-                <MyModal visible={postEditVisible} setVisible={setPostEditVisible}>
-                    <PostEditForm editPost={editPost} setPost={setPostForEdit} post={postForEdit}/>
-                </MyModal>
+                <FadeModalDialog additionalComponent={isMapOpen && <MyMap width='100vw' height='100vh' callback={(el) => {
+                    setIsMapOpen(false);
+                    setRoute(el);
+                }}></MyMap>} open={postEditVisible} setOpen={setPostEditVisible}>
+                    <PostEditForm setIsMapOpen={setIsMapOpen} isMapOpen={isMapOpen} editPost={editPost} setRoute={setRoute} setPost={setPostForEdit} post={postForEdit}/>
+                </FadeModalDialog>
             }
             <div className="card">
                 <div className="tab-content p-4">
@@ -100,34 +132,48 @@ const CardList = ({user}) => {
                                 <button
                                     type="button"
                                     className={`btn ${listType === 'posts' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                    onClick={() => handleTabClick('posts')}
+                                    onClick={() => {
+                                        handleTabClick('posts')
+                                        setList([]);
+                                    }}
                                 >
                                     Публикации
                                 </button>
                                 <button
                                     type="button"
                                     className={`btn ${listType === 'responses' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                    onClick={() => handleTabClick('responses')}
+                                    onClick={() => {
+                                        handleTabClick('responses')
+                                        setList([]);
+                                    }}
                                 >
                                     Отклики
                                 </button>
                             </div>
                         </div>
-                        <div className="row">
-                            {listType === 'posts' ?
-                                <div className="col-xl-12">
-                                    {list.map(item => (
+                            <div
+                                id="scrollableDiv"
+                                className="row"
+                                style={{
+                                    height: 400,
+                                    overflow: 'auto',
+                                    padding: '0 16px',
+                                }}
+                            >
+                                {listType === 'posts' ?
+                                    <div className="col-xl-12">
+                                        {list.map(item => (
                                         <PostCardItem setPostEditVisible={setPostEditVisible} setPostForEdit={setPostForEdit} setPostForDelete={setPostForDelete} setDeleteConfirmVisible={setDeletePostConfirmVisible} item={item} />
-                                    ))}
-                                </div>
-                                :
-                                <div className="col-xl-12">
-                                    {list.map(item => (
-                                        <ResponseCardItem setResponseForDelete={setResponseForDelete} setDeleteConfirmVisible={setDeleteResponseConfirmVisible} item={item} />
-                                    ))}
-                                </div>
-                            }
-                        </div>
+                                        ))}
+                                    </div>
+                                    :
+                                    <div className="col-xl-12">
+                                        {list.map(item => (
+                                            <ResponseCardItem setResponseForDelete={setResponseForDelete} setDeleteConfirmVisible={setDeleteResponseConfirmVisible} item={item} />
+                                        ))}
+                                    </div>
+                                }
+                            </div>
                     </div>
                 </div>
             </div>

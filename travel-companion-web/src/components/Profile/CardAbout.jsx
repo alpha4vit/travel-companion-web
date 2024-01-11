@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import classes from "./CardAbout.module.css"
 import {useFetching} from "../../hooks/useFetching";
 import {PostService} from "../../api/PostService";
-import {PostReponseService} from "../../api/PostReponseService";
+import {PostResponseService} from "../../api/PostResponseService";
 import {ReviewService} from "../../api/ReviewService";
 import Review from "./Review";
 import {Typography} from "antd";

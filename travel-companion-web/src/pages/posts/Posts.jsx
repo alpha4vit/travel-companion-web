@@ -4,17 +4,15 @@ import {PostService} from "../../api/PostService";
 import PostList from "../../components/Posts/PostList";
 import SearchMenu from "../../components/SearchMenu/SearchMenu";
 import {usePosts} from "../../hooks/usePosts";
-import Loader from "../../components/UI/Loader/Loader";
 import {getPagesCount} from "../../utils/pages";
 import PostCreationForm from "../../components/Posts/PostCreationForm";
 import ResponseForm from "../../components/Posts/ResponseForm";
 import {Fab} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import FadeModalDialog from "../../components/UI/MyModal/FadeModalDialog";
-import {Alert, Avatar, Button, Card, message, Skeleton} from "antd";
-import Meta from "antd/es/card/Meta";
+import {Alert, Card, message, Skeleton} from "antd";
 import classes from "./Posts.module.css";
-import PopUpAlert from "../../components/UI/Alert/PopUpAlert";
+
 import MyMap from "../../components/map/MyMap";
 const Posts = ({isLoggedIn, isEmailVerified}) => {
 
@@ -76,7 +74,7 @@ const Posts = ({isLoggedIn, isEmailVerified}) => {
                 </FadeModalDialog>
             }
             {isLoggedIn && isEmailVerified &&
-                <FadeModalDialog additionalComponent={isMapOpen && <MyMap width='100vw' height='100vh' callback={(el) => {
+                <FadeModalDialog additionalComponent={isMapOpen && <MyMap width='100vw' height='100vh' route={route} callback={(el) => {
                     setIsMapOpen(false);
                     setRoute(el);
                 }}></MyMap>} title="Создание объявления" open={isVisible} setOpen={setVisible}>

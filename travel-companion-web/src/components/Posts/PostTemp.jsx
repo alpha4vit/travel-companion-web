@@ -4,13 +4,14 @@ import {Link, useParams} from "react-router-dom";
 import {PostService} from "../../api/PostService";
 import {ImageService} from "../../api/ImageService";
 import {UserService} from "../../api/UserService";
-import MyModal from "../UI/MyModal/MyModal";
 import ResponseForm from "./ResponseForm";
 import Button from '@mui/material/Button';
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
 import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
-import {message} from "antd";
+import {Col, message, Row, Typography} from "antd";
+import MyMap from "../map/MyMap";
+import {DateConverter} from "../../utils/DateConverter";
 
 const PostTemp = () => {
 
@@ -23,7 +24,9 @@ const PostTemp = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isResponseVisible, setResponseVisible] = useState(false);
-
+    const [route, setRoute] = useState({});
+    const [deparute, setDeparture] = useState("");
+    const [destination, setDestination] = useState("");
     const [messageApi, contextHolder] = message.useMessage();
 
     const successResponseMessage = () => {
@@ -37,6 +40,9 @@ const PostTemp = () => {
         const fetch = async () => {
             const response = await PostService.getById(postId);
             setPost(response)
+            setRoute(response.route);
+            setDeparture(response.route.departure.text)
+            setDestination(response.route.destination.text)
             const userTemp = await UserService.getById(response.user.id);
             setUser(userTemp)
             setRating(userTemp.rating);
@@ -87,7 +93,7 @@ const PostTemp = () => {
                                             name="text-feedback"
                                             value={rating}
                                             readOnly
-                                            precision={0.01}
+                                            precision={0.1}
                                             emptyIcon={<StarIcon style={{ opacity: 1}} fontSize="inherit" />}
                                         />
                                     </span>
@@ -103,12 +109,21 @@ const PostTemp = () => {
                     <div className={classes.adSection}>
                         <h2>{post.title}</h2>
                         <p className={classes.description}>{post.description}</p>
+                        <div className={classes.tripInfo} style={{ marginTop: '10px' }}>
+                            <Row gutter={[16, 16]}>
+                                <Col xs={24} md={12}>
+                                    <Typography><i>Город отправления:</i> {deparute}</Typography>
+                                    <Typography><i>Город прибытия:</i> {destination}</Typography>
+                                </Col>
+                                <Col xs={24} md={12}>
+                                    <Typography><i>Дата отправления:</i> {DateConverter.convertDateSimple(post.date_there)}</Typography>
+                                    <Typography><i>Дата прибытия:</i> {DateConverter.convertDateSimple(post.date_back)}</Typography>
 
-                        <div className={classes.tripInfo}>
-                            <h4>Информация о поездке</h4>
-                            <p>Маршрут: Город А - Город Б</p>
-                            <p>Дата отправления: {post.date_there}</p>
-                            <p>Дата возвращения: {post.date_back}</p>
+                                </Col>
+                            </Row>
+                            <Typography><i>Описание:</i> {post.description}</Typography>
+                            <Typography><i>Стоимость:</i> {post.fee}</Typography>
+                            <hr className={classes.hrDivider}/>
                         </div>
                         {isEmailVerified && isAuthenticated &&
                             <hr className={classes.hrDivider}/>

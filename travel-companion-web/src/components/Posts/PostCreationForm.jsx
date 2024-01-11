@@ -17,26 +17,21 @@ const PostCreationForm = ({setVisible, posts, setPosts, isMapOpen, setIsMapOpen,
 
     const [dateThere, setDateThere] = useState(new Date());
     const [dateBack, setDateBack] = useState(new Date());
-    const [post, setPost] = useState({
-        title: "",
-        description: "",
-        fee: "",
-        date_there: new Date(),
-        date_back: new Date(),
-        post_type: "DRIVER",
-        transport_id: 1
-    });
+    const [post, setPost] = useState({title: "", description: "", fee:"",
+        date_there:new Date(), date_back:new Date(),
+        post_type:"DRIVER", route:route});
 
     const [titleError, setTitleError] = useState(false);
     const [descError, setDescError] = useState(false);
     const [feeError, setFeeError] = useState(false);
     const [dateError, setDateError] = useState(false);
+    const [routeError, setRouteError] = useState(false);
 
     const [titleErrorMessage, setTitleMessageError] = useState("");
     const [descErrorMessage, setDescMessageError] = useState("");
     const [feeErrorMessage, setFeeErrorMessage] = useState("");
     const [dateErrorMessage, setDateErrorMessage] = useState("");
-
+    const [routeErrorMessage, setRouteErrorMessage] = useState("");
 
 
     const [messageApi, contextHolder] = message.useMessage();
@@ -49,12 +44,43 @@ const PostCreationForm = ({setVisible, posts, setPosts, isMapOpen, setIsMapOpen,
     };
 
     const createPost = async () => {
-        console.log(route)
-        await PostService.createPost(post, handleTitleError, handleDescError, handleFeeError, handleDateError, (created) => {
-            setPosts([...posts, created]);
-            setVisible(false);
-            successMessage();
-        });
+
+        if (!route.departure || !route.destination || !route.departure.text || !route.destination.text){
+            setRouteError(true);
+            setRouteErrorMessage("Маршрут обязательно должен быть выбран!");
+        }
+        else{
+            setPost({...post, route: {
+                    departure:{
+                        text:route.departure.text,
+                        longitude:route.departure.longitude,
+                        latitude:route.departure.latitude
+                    },
+                    destination:{
+                        text:route.destination.text,
+                        longitude:route.destination.longitude,
+                        latitude:route.destination.latitude
+                    }
+
+                }});
+            await PostService.createPost({...post, route: {
+                    departure:{
+                        text:route.departure.text,
+                        longitude:route.departure.longitude,
+                        latitude:route.departure.latitude
+                    },
+                    destination:{
+                        text:route.destination.text,
+                        longitude:route.destination.longitude,
+                        latitude:route.destination.latitude
+                    }
+
+                }}, handleTitleError, handleDescError, handleFeeError, handleDateError, (created) => {
+                setPosts([...posts, created]);
+                setVisible(false);
+                successMessage();
+            });
+        }
     }
 
     const updateStartDate = (date, setDate, date_type) => {
@@ -194,8 +220,12 @@ const PostCreationForm = ({setVisible, posts, setPosts, isMapOpen, setIsMapOpen,
                     </Select>
                 </FormControl>
                 <div style={{marginTop: 10}}>
-                    <Button fullWidth variant="contained" onClick={() => setIsMapOpen(!isMapOpen)}>Открыть карту для выбора маршрута</Button>
+                    <Button fullWidth variant="contained" onClick={() => {
+                        setIsMapOpen(!isMapOpen);
+                        setRouteError(false);
+                    }}>Открыть карту для выбора маршрута</Button>
                 </div>
+                <TransitionAlert message={routeErrorMessage} open={routeError} setOpen={setRouteError}/>
                 <div style={{marginTop: 10}}>
                     <Button fullWidth variant="contained" onClick={createPost}>Сохранить изменения</Button>
                 </div>

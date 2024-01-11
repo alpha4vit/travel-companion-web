@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import classes from "./Post.module.css";
-import {Card, Skeleton, Divider, Typography} from "antd";
+import {Card, Skeleton, Divider, Typography, Row, Col} from "antd";
 import Meta from "antd/es/card/Meta";
 import Button from "@mui/material/Button";
 import {ImageService} from "../../api/ImageService";
 import {Avatar} from "@mui/joy";
+import {DateConverter} from "../../utils/DateConverter";
 
 const PostListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn, isEmailVerified, loading}) => {
-    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
 
     const [avatar, setAvatar] = useState("");
 
@@ -51,10 +51,18 @@ const PostListItem = ({post, setResponseVisible, setResponsedPostId, isLoggedIn,
                             title={post.user.username}
                         />
                         <Divider>{post.post_type === 'DRIVER' ? 'Ищу попутчика' : 'Ищу попутку'}</Divider>
-                        <div style={{marginTop:'10px'}}>
-                            <Typography><i>Заголовок:</i> {post.title}</Typography>
-                            <Typography><i>Дата отправления:</i> {post.date_there}</Typography>
-                            <Typography><i>Дата прибытия:</i> {post.date_back}</Typography>
+                        <div style={{ marginTop: '10px' }}>
+                            <Row gutter={[16, 16]}>
+                                <Col xs={24} md={12}>
+                                    <Typography><i>Город отправления:</i> {post.route.departure.text}</Typography>
+                                    <Typography><i>Город прибытия:</i> {post.route.destination.text}</Typography>
+                                </Col>
+                                <Col xs={24} md={12}>
+                                    <Typography><i>Дата отправления:</i> {DateConverter.convertDateSimple(post.date_there)}</Typography>
+                                    <Typography><i>Дата прибытия:</i> {DateConverter.convertDateSimple(post.date_back)}</Typography>
+
+                                </Col>
+                            </Row>
                             <Typography><i>Описание:</i> {post.description}</Typography>
                             <Typography><i>Стоимость:</i> {post.fee}</Typography>
                         </div>

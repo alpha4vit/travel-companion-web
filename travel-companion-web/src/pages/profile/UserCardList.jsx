@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {UserService} from "../../api/UserService";
 import {useFetching} from "../../hooks/useFetching";
 import {PostService} from "../../api/PostService";
-import {PostReponseService} from "../../api/PostReponseService";
+import {PostResponseService} from "../../api/PostResponseService";
 import MyModal from "../../components/UI/MyModal/MyModal";
 import DeleteConfirmForm from "../../components/Profile/DeleteConfirmForm";
 import PostEditForm from "../../components/Profile/PostEditForm";
@@ -40,7 +40,7 @@ const UserCardList = () => {
                 break;
             }
             case "responses":{
-                response = await PostReponseService.getAllByUserId(userId);
+                response = await PostResponseService.getAllByUserId(userId);
                 break;
             }
         }

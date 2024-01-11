@@ -9,8 +9,9 @@ import Button from '@mui/material/Button';
 import InputFileUpload from '../UI/input/InputFileUpload';
 import {Stack} from "@mui/joy";
 import TransitionAlert from "../UI/Alert/TransitionAlert";
+import {message} from "antd";
 
-const ProfileEditForm = ({ user, setVisible, avatar, setAvatar, setUser }) => {
+const ProfileEditForm = ({ user, setVisible, avatar, setAvatar, setUser}) => {
 
     const [edited, setEdited] = useState({...user});
     // const [isImageUploaded, setImageUploaded] = useState(false);
@@ -28,6 +29,16 @@ const ProfileEditForm = ({ user, setVisible, avatar, setAvatar, setUser }) => {
     const [errorBioMessage, setErrorBioMessage] = useState("");
     const [errorAvatarMessage, setErrorAvatarMessage] = useState("");
 
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const successEditMessage = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Профиль пользователя успешно изменен!'
+        });
+    };
+
+
     const editUser = async () => {
         await UserService.updateUser(edited,
             () => {
@@ -38,6 +49,7 @@ const ProfileEditForm = ({ user, setVisible, avatar, setAvatar, setUser }) => {
                 setEmailIncorrect(false);
                 setBioIncorrect(false);
                 setPhonenumberIncorrect(false);
+                successEditMessage();
             },
             handleUsernameError,
             handlerEmailError,
@@ -96,81 +108,85 @@ const ProfileEditForm = ({ user, setVisible, avatar, setAvatar, setUser }) => {
 
 
     return (
-        <div>
-            <form>
-                <Box mb={2}>
-                    <TextField
-                        error={usernameIncorrect}
-                        fullWidth
-                        id="username"
-                        onChange={(e) => {
-                            setEdited({...edited, username: e.target.value});
-                            setUsernameIncorrect(false);
-                        }}
-                        value={edited.username}
-                        label="Имя пользователя"
-                        variant="outlined"
-                    />
-                    <TransitionAlert message={errorUsernameMessage} open={usernameIncorrect} setOpen={setUsernameIncorrect}  />
-                </Box>
-                <Box mb={2}>
-                    <TextField
-                        fullWidth
-                        id="email"
-                        onChange={(e) => {
-                            setEdited({...edited, email: e.target.value});
-                            setEmailIncorrect(false)
-                        }}
-                        value={edited.email}
-                        label="Электронная почта"
-                        variant="outlined"
-                    />
-                    <TransitionAlert message={errorEmailMessage} open={emailIncorrect} setOpen={setEmailIncorrect}  />
-                </Box>
-                <Box mb={2}>
-                    <TextField
-                        fullWidth
-                        id="phone_number"
-                        onChange={(e) => {
-                            setEdited({...edited, phone_number: e.target.value})
-                            setPhonenumberIncorrect(false)
-                        }}
-                        value={edited.phone_number}
-                        label="Номер телефона"
-                        variant="outlined"
-                    />
-                    <TransitionAlert message={errorPhonenumberMessage} open={phonenumberIncorrect} setOpen={setPhonenumberIncorrect}  />
-                </Box>
-                <Box mb={2}>
-                    <TextField
-                        fullWidth
-                        id="bio"
-                        onChange={(e) => {
-                            setEdited({...edited, bio: e.target.value})
-                            setBioIncorrect(false)
-                        }}
-                        value={edited.bio}
-                        label="Биография"
-                        variant="outlined"
-                    />
-                    <TransitionAlert message={errorBioMessage} open={bioIncorrect} setOpen={setBioIncorrect}  />
-                </Box>
-                <Box mb={2}>
-                    <form>
-                        <Stack spacing={{ xs: 1, sm: 2 }} direction="row">
-                            <InputFileUpload callback={(e) => handleFileChange(e)} text="Загрузить аватар" />
-                            <p style={{marginTop:6}}>{selectedFileName}</p>
-                        </Stack>
-                    </form>
-                    <TransitionAlert message={errorAvatarMessage} open={avatarIncorrect} setOpen={setAvatarIncorrect}  />
-                </Box>
+        <>
+            {contextHolder}
+            <div>
+                <form>
+                    <Box mb={2}>
+                        <TextField
+                            error={usernameIncorrect}
+                            fullWidth
+                            id="username"
+                            onChange={(e) => {
+                                setEdited({...edited, username: e.target.value});
+                                setUsernameIncorrect(false);
+                            }}
+                            value={edited.username}
+                            label="Имя пользователя"
+                            variant="outlined"
+                        />
+                        <TransitionAlert message={errorUsernameMessage} open={usernameIncorrect} setOpen={setUsernameIncorrect}  />
+                    </Box>
+                    <Box mb={2}>
+                        <TextField
+                            fullWidth
+                            id="email"
+                            onChange={(e) => {
+                                setEdited({...edited, email: e.target.value});
+                                setEmailIncorrect(false)
+                            }}
+                            value={edited.email}
+                            label="Электронная почта"
+                            variant="outlined"
+                        />
+                        <TransitionAlert message={errorEmailMessage} open={emailIncorrect} setOpen={setEmailIncorrect}  />
+                    </Box>
+                    <Box mb={2}>
+                        <TextField
+                            fullWidth
+                            id="phone_number"
+                            onChange={(e) => {
+                                setEdited({...edited, phone_number: e.target.value})
+                                setPhonenumberIncorrect(false)
+                            }}
+                            value={edited.phone_number}
+                            label="Номер телефона"
+                            variant="outlined"
+                        />
+                        <TransitionAlert message={errorPhonenumberMessage} open={phonenumberIncorrect} setOpen={setPhonenumberIncorrect}  />
+                    </Box>
+                    <Box mb={2}>
+                        <TextField
+                            fullWidth
+                            id="bio"
+                            onChange={(e) => {
+                                setEdited({...edited, bio: e.target.value})
+                                setBioIncorrect(false)
+                            }}
+                            value={edited.bio}
+                            label="Биография"
+                            variant="outlined"
+                        />
+                        <TransitionAlert message={errorBioMessage} open={bioIncorrect} setOpen={setBioIncorrect}  />
+                    </Box>
+                    <Box mb={2}>
+                        <form>
+                            <Stack spacing={{ xs: 1, sm: 2 }} direction="row">
+                                <InputFileUpload callback={(e) => handleFileChange(e)} text="Загрузить аватар" />
+                                <p style={{marginTop:6}}>{selectedFileName}</p>
+                            </Stack>
+                        </form>
+                        <TransitionAlert message={errorAvatarMessage} open={avatarIncorrect} setOpen={setAvatarIncorrect}  />
+                    </Box>
 
 
-                <Button fullWidth variant="contained" type="button" onClick={editUser}>
-                    Сохранить изменения
-                </Button>
-            </form>
-        </div>
+                    <Button fullWidth variant="contained" type="button" onClick={editUser}>
+                        Сохранить изменения
+                    </Button>
+                </form>
+            </div>
+        </>
+
     );
 };
 

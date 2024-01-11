@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import classes from "./PostCreationForm.module.css";
-import {PostReponseService} from "../../api/PostReponseService";
+import {PostResponseService} from "../../api/PostResponseService";
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {message} from "antd";
@@ -17,7 +17,7 @@ const ResponseForm = ({responsedPostId, setResponseVisible, callback}) => {
     const [commentErrorMessage, setCommentErrorMessage] = useState("");
 
     const respond =  () => {
-        PostReponseService.respond(response, user.id, responsedPostId, handleContactError, handleCommentError, () => {
+        PostResponseService.respond(response, user.id, responsedPostId, handleContactError, handleCommentError, () => {
             setResponseVisible(false);
             callback();
         });

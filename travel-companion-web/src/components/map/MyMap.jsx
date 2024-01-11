@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, {memo, useRef, useState} from 'react';
 import { Map, YMaps, ZoomControl, Button } from "@pbe/react-yandex-maps";
 
 const mapState = { center: [53.489453, 29.341762], zoom: 7 };
 
-const MyMap = ({ width, height, callback}) => {
+const MyMap = ({ width, height, callback, route}) => {
     const [ymaps, setYmaps] = useState(null);
     const routePanelRef = useRef(null);
-
 
     const getRoute = ref => {
         if (ymaps) {
@@ -21,14 +20,15 @@ const MyMap = ({ width, height, callback}) => {
             });
 
             routePanel.routePanel.options.set('types', { auto: true, pedestrian: true,  masstransit:true});
-
-            routePanel.routePanel.state.set({
-                type: 'driving',
-                fromEnabled: true,
-                from: [53.489453, 29.341762],
-                to: [53.902735, 27.555696],
-                toEnabled: true,
-            });
+            if (route.departure) {
+                routePanel.routePanel.state.set({
+                    type: 'driving',
+                    fromEnabled: true,
+                    from: [route.departure.longitude, route.departure.latitude],
+                    to: [route.destination.longitude, route.destination.latitude],
+                    toEnabled: true,
+                });
+            }
 
             ref.controls.add(routePanel);
             routePanelRef.current = routePanel;
@@ -40,16 +40,16 @@ const MyMap = ({ width, height, callback}) => {
             const routePanel = routePanelRef.current;
             const route = routePanel.routePanel.getRoute();
             const wayPoints = route.getWayPoints();
-            const startPoint = getPointInfo(wayPoints.get(0));
-            const endPoint = getPointInfo(wayPoints.get(wayPoints.getLength() - 1));
-            return {startPoint: startPoint, endPoint: endPoint}
+            const destination = getPointInfo(wayPoints.get(0));
+            const departure = getPointInfo(wayPoints.get(wayPoints.getLength() - 1));
+            return {departure: departure, destination: destination}
         }
     };
 
     const getPointInfo = point => {
         const coordinates = point.geometry.getCoordinates();
         const address = point.properties.get("name");
-        return { coordinates, address };
+        return { text:address, longitude:coordinates?coordinates[0]:null, latitude:coordinates?coordinates[1]:null};
     };
 
     const handleSaveRoute = () => {

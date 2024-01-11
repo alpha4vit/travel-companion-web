@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export class PostReponseService{
+export class PostResponseService {
 
     static url = "http://localhost:8080/api/v1/responses";
 

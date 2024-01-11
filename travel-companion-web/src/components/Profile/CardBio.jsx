@@ -26,6 +26,8 @@ const CardBio = ({user, setUser}) => {
         uploadAvatar();
     }, [modal])
 
+
+
     return (
         <div className="card">
             <FadeModalDialog title="Изменение профиля" open={modal} setOpen={setModal}>
