@@ -28,4 +28,8 @@ export class PostResponseService {
         }
     }
 
+    static async deleteById(id){
+        const response = axios.delete(this.url+`/${id}`);
+    }
+
 }

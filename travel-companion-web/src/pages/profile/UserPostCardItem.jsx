@@ -1,4 +1,5 @@
 import React from 'react';
+import {DateConverter} from "../../utils/DateConverter";
 
 
 const PostCardItem = ({item}) => {
@@ -20,9 +21,11 @@ const PostCardItem = ({item}) => {
                             <div className="col-xl-6 col-sm-7">
                                 <div className="row align-items-center">
                                     <div className="col-info col-xl-5 col-md-6 col-sm-5">
-                                        <p className="mb-0 text-muted font-size-12">Дата отправления: {item.date_there}</p>
-                                        <p className="mb-0 text-muted font-size-12">Дата возвращения: {item.date_back}</p>
-                                        <p className="mb-0 text-muted font-size-12">Оплата: {item.fee}</p>
+                                        <p className="mb-0 text-muted font-size-12"><i>Дата отправления:</i> {DateConverter.convertDateSimple(item.date_there)}</p>
+                                        <p className="mb-0 text-muted font-size-12"><i>Дата прибытия:</i> {DateConverter.convertDateSimple(item.date_back)}</p>
+                                        <p className="mb-0 text-muted font-size-12"><i>Город отправления:</i> {item.route.departure.text}</p>
+                                        <p className="mb-0 text-muted font-size-12"><i>Город прибытия:</i> {item.route.destination.text}</p>
+                                        <p className="mb-0 text-muted font-size-12"><i>Оплата:</i> {item.fee}</p>
                                     </div>
 
                                 </div>

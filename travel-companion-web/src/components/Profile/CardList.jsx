@@ -49,7 +49,7 @@ const CardList = ({user}) => {
     }
 
     const confirmResponseDelete = () => {
-        PostResponseService.deleteById(postForDelete.id);
+        PostResponseService.deleteById(responseForDelete.id);
         fetchList();
         setDeleteResponseConfirmVisible(false);
     }
@@ -63,7 +63,7 @@ const CardList = ({user}) => {
 
     useEffect(() => {
         fetchList();
-    }, [setPostEditVisible, postEditVisible,  setDeletePostConfirmVisible, deletePostConfirmVisible, listType])
+    }, [setPostEditVisible, postEditVisible,  setDeletePostConfirmVisible, deletePostConfirmVisible, deleteResponseConfirmVisible, setDeleteResponseConfirmVisible, listType])
 
     var listName = "";
     switch (listType){
@@ -155,7 +155,7 @@ const CardList = ({user}) => {
                                 id="scrollableDiv"
                                 className="row"
                                 style={{
-                                    height: 400,
+                                    height: 300,
                                     overflow: 'auto',
                                     padding: '0 16px',
                                 }}

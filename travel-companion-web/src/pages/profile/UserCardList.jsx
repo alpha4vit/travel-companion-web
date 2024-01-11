@@ -106,7 +106,15 @@ const UserCardList = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="row">
+                        <div
+                            id="scrollableDiv"
+                            className="row"
+                            style={{
+                                height: 300,
+                                overflow: 'auto',
+                                padding: '0 16px',
+                            }}
+                        >
                             {listType === 'posts' ?
                                 <div className="col-xl-12">
                                     {list.map(item => (
@@ -120,6 +128,7 @@ const UserCardList = () => {
                                     ))}
                                 </div>
                             }
+
                         </div>
                     </div>
                 </div>
