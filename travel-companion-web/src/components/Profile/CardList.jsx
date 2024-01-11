@@ -58,6 +58,7 @@ const CardList = ({user}) => {
         PostService.update(post, handleTitleError, handleDescError, handleFeeError, handleDateError, () => {
             fetchList();
             setPostEditVisible(false);
+            successMessage("Персональная информация успешно обновлена!")
         });
     }
 
