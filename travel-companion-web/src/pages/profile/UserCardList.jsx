@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {UserService} from "../../api/UserService";
 import {useFetching} from "../../hooks/useFetching";
@@ -10,6 +10,8 @@ import PostEditForm from "../../components/Profile/PostEditForm";
 import PostCardItem from "../../components/Profile/PostCardItem";
 import ResponseCardItem from "../../components/Profile/ResponseCardItem";
 import UserPostCardItem from "./UserPostCardItem";
+import {Card, Empty, Skeleton} from "antd";
+import classes from "../posts/Posts.module.css";
 
 
 const UserCardList = () => {
@@ -26,8 +28,10 @@ const UserCardList = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const response = await UserService.getById(userId);
-            setUser(response);
+            await UserService.getById(userId, (resp) => {
+                setUser(resp);
+            });
+
         }
         fetch();
     }, [])
@@ -115,17 +119,40 @@ const UserCardList = () => {
                                 padding: '0 16px',
                             }}
                         >
-                            {listType === 'posts' ?
-                                <div className="col-xl-12">
-                                    {list.map(item => (
-                                        <UserPostCardItem item={item} />
+                            {isListLoading && (
+                                <div className={classes.list}>
+                                    {[...Array(3)].map((_, index) => (
+                                        <Card
+                                            style={{
+                                                marginBottom:'16px',
+                                                width: '100%',
+                                            }}
+                                        >
+                                            <Skeleton loading={isListLoading} active>
+                                            </Skeleton>
+                                        </Card>
                                     ))}
+                                </div>
+                            )}
+                            {listType === 'posts' && !isListLoading ?
+                                <div className="col-xl-12">
+                                    {list.length > 0 ?
+                                        list.map(item => (
+                                            <UserPostCardItem item={item} />
+                                        ))
+                                        :
+                                        <Empty description="Публикации не найдены!" style={{marginTop:'40px'}}/>
+                                    }
                                 </div>
                                 :
                                 <div className="col-xl-12">
-                                    {list.map(item => (
-                                        <ResponseCardItem item={item} />
-                                    ))}
+                                    {list.length > 0 ?
+                                        list.map(item => (
+                                            <ResponseCardItem item={item} />
+                                        ))
+                                        :
+                                        <Empty description="Отклики не найдены!" style={{marginTop:'40px'}}/>
+                                    }
                                 </div>
                             }
 

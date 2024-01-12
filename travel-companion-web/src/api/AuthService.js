@@ -24,10 +24,12 @@ export class AuthService{
             if (status === 200) {
                 localStorage.setItem("jwtAccessToken", response.data.accessToken);
                 localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
-                const user = await UserService.getById(response.data.id);
-                localStorage.setItem("authenticatedUser", JSON.stringify(user));
-                onLogin();
-                navigateTo("/posts");
+                const user = await UserService.getById(response.data.id, (resp) => {
+                    localStorage.setItem("authenticatedUser", JSON.stringify(resp));
+                    onLogin();
+                    navigateTo("/posts");
+                });
+
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
@@ -51,9 +53,10 @@ export class AuthService{
             if (response.status === 201){
                 localStorage.setItem("jwtAccessToken", response.data.accessToken);
                 localStorage.setItem("jwtRefreshToken", response.data.refreshToken);
-                const user = await UserService.getById(response.data.id);
-                localStorage.setItem("authenticatedUser", JSON.stringify(user));
-                navigateTo("/auth/confirm");
+                await UserService.getById(response.data.id, (resp) => {
+                    localStorage.setItem("authenticatedUser", JSON.stringify(resp));
+                    navigateTo("/auth/confirm");
+                });
             }
         }
         catch (error){
@@ -87,10 +90,11 @@ export class AuthService{
             console.log(response)
             if (response.status === 200){
                 const current = JSON.parse(localStorage.getItem("authenticatedUser"));
-                const user = await UserService.getById(current.id);
-                localStorage.setItem("authenticatedUser", JSON.stringify(user));
-                onConfirmation();
-                navigateTo("/posts");
+                await UserService.getById(current.id, (resp) => {
+                    localStorage.setItem("authenticatedUser", JSON.stringify(resp));
+                    onConfirmation();
+                    navigateTo("/posts");
+                });
             }
         }
         catch (error){

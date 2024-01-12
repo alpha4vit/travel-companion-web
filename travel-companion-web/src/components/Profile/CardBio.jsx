@@ -20,7 +20,7 @@ const CardBio = ({user, setUser}) => {
 
     useEffect( () => {
         const uploadAvatar = async () => {
-            const response = await ImageService.fetchImage(user.avatar, user);
+            const response = await ImageService.fetchImage(user.avatar);
             setAvatar(response);
         }
         uploadAvatar();

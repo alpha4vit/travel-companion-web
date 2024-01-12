@@ -11,7 +11,7 @@ import MyModal from "../UI/MyModal/MyModal";
 import DeleteConfirmForm from "./DeleteConfirmForm";
 import PostCreationForm from "../Posts/PostCreationForm";
 import PostEditForm from "./PostEditForm";
-import {Button, List, message, Modal} from "antd";
+import {Button, Card, Empty, List, message, Modal, Skeleton} from "antd";
 import FadeModalDialog from "../UI/MyModal/FadeModalDialog";
 import MyMap from "../map/MyMap";
 
@@ -58,7 +58,7 @@ const CardList = ({user}) => {
         PostService.update(post, handleTitleError, handleDescError, handleFeeError, handleDateError, () => {
             fetchList();
             setPostEditVisible(false);
-            successMessage("Персональная информация успешно обновлена!")
+            successMessage("Публикация успешно изменена!")
         });
     }
 
@@ -161,17 +161,40 @@ const CardList = ({user}) => {
                                     padding: '0 16px',
                                 }}
                             >
+                                {isListLoading && (
+                                    <div >
+                                        {[...Array(5)].map((_, index) => (
+                                            <Card
+                                                style={{
+                                                    marginBottom:'16px',
+                                                    width: '100%',
+                                                }}
+                                            >
+                                                <Skeleton loading={isListLoading} active>
+                                                </Skeleton>
+                                            </Card>
+                                        ))}
+                                    </div>
+                                )}
                                 {listType === 'posts' ?
                                     <div className="col-xl-12">
-                                        {list.map(item => (
+                                        {list.length > 0 ?
+                                        list.map(item => (
                                         <PostCardItem setPostEditVisible={setPostEditVisible} setPostForEdit={setPostForEdit} setPostForDelete={setPostForDelete} setDeleteConfirmVisible={setDeletePostConfirmVisible} item={item} />
-                                        ))}
+                                        ))
+                                            :
+                                            <Empty description="Публикации не найдены!" style={{marginTop:'40px'}}/>
+                                        }
                                     </div>
                                     :
                                     <div className="col-xl-12">
-                                        {list.map(item => (
-                                            <ResponseCardItem setResponseForDelete={setResponseForDelete} setDeleteConfirmVisible={setDeleteResponseConfirmVisible} item={item} />
-                                        ))}
+                                        {list.length > 0 ?
+                                            list.map(item => (
+                                                    <ResponseCardItem setResponseForDelete={setResponseForDelete} setDeleteConfirmVisible={setDeleteResponseConfirmVisible} item={item} />
+                                                ))
+                                            :
+                                            <Empty description="Отклики не найдены!" style={{marginTop:'40px'}}/>
+                                        }
                                     </div>
                                 }
                             </div>

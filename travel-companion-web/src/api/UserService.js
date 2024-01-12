@@ -4,9 +4,17 @@ export class UserService {
 
     static url = "http://localhost:8080/api/v1/users/";
 
-    static async getById(id) {
-        const response = await axios.get(this.url + id);
-        return response.data;
+    static async getById(id, success) {
+        try {
+            const response = await axios.get(this.url + id);
+            if (response.status === 200) {
+                success(response.data);
+                return response.data;
+            }
+        }
+        catch (error){
+            console.log(error)
+        }
     }
 
     static async updateUser(user,

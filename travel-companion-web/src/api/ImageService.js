@@ -9,7 +9,7 @@ export class ImageService{
         return `${this.minioEndpoint}/${bucket}/${objectName}`;
     };
 
-    static async fetchImage(objectName) {
+    static async fetchImage(objectName, callback) {
 
         const url = this.getObjectUrl(this.bucketName, objectName);
 
@@ -19,6 +19,8 @@ export class ImageService{
             });
 
             const dataUrl = `data:image/jpeg;base64,${Buffer.from(response.data, 'binary').toString('base64')}`;
+            if (callback)
+                callback(dataUrl);
             return dataUrl;
         } catch (error) {
             console.error('Error fetching image:', error);

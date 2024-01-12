@@ -43,11 +43,12 @@ const PostTemp = () => {
             setRoute(response.route);
             setDeparture(response.route.departure.text)
             setDestination(response.route.destination.text)
-            const userTemp = await UserService.getById(response.user.id);
-            setUser(userTemp)
-            setRating(userTemp.rating);
-            const avatarTemp = await ImageService.fetchImage(response.user.avatar);
-            setAvatar(avatarTemp);
+            await UserService.getById(response.user.id, (userTemp)=>{
+                setUser(userTemp)
+                setRating(userTemp.rating);
+                const avatarTemp = ImageService.fetchImage(response.user.avatar, (resp) => setAvatar(resp));
+            });
+
         }
         if (localStorage.getItem("authenticatedUser") == null)
             setIsAuthenticated(false);
@@ -61,6 +62,7 @@ const PostTemp = () => {
         }
         fetch();
     }, [])
+
 
 
     return (
@@ -101,7 +103,7 @@ const PostTemp = () => {
                             </div>
                             <div className={classes.responsesCount}>
                                 <p className={classes.responsesText}>Количество откликов: {post.responses_count}</p>
-                                <p className={classes.responsesText}>Был в сети: 15:21</p>
+                                <p className={classes.responsesText}>Дата публикации: {DateConverter.convertDateFull(post.creation_date)}</p>
                             </div>
                         </div>
                         <hr className={classes.hrDivider}/>

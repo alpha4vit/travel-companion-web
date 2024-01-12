@@ -8,21 +8,20 @@ const UserCardBio = () => {
 
     const [avatar, setAvatar] = useState("");
     const {userId} = useParams();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({username:"", email:"", phone_number:"", bio:""});
 
     useEffect(() => {
         const fetch = async () => {
-            const response = await UserService.getById(userId);
-            setUser(response);
+           await UserService.getById(userId, (response)=>setUser(response));
         }
         fetch();
     }, [])
 
     useEffect(() => {
         const fetchAvatar = async () => {
-            const userTemp = await UserService.getById(userId);
-            const response = await ImageService.fetchImage(userTemp.avatar);
-            setAvatar(response);
+            await UserService.getById(userId, (temp) => {
+                ImageService.fetchImage(temp.avatar, (response) => setAvatar(response));
+            });
         }
         fetchAvatar();
     }, [])

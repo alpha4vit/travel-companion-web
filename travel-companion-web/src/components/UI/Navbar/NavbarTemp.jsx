@@ -20,7 +20,7 @@ import {ImageService} from "../../../api/ImageService";
 
 const NavbarTemp = ({isLoggedIn, onLogout}) => {
 
-    const user = JSON.parse(localStorage.getItem("authenticatedUser"));
+    const user = localStorage.getItem("authenticatedUser") ? JSON.parse(localStorage.getItem("authenticatedUser")) : {};
 
     const [visible, setVisible] = useState(false)
 
